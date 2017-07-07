@@ -1,0 +1,18 @@
+[
+	{"name":"新近新品","list":[
+		{"name":"今日上新","subnav":["今日上新","昨日上新","本周上新"]},
+		{"name":"男仕","subnav":["男仕 Man","包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]},
+		{"name":"女士","subnav":["包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]}
+	]},
+
+	{"name":"女士","list":[
+		{"name":"包袋 Bags","subnav":["所有包袋","手提包 Totes","单肩包 Shoulder Bags","斜挎包 Messenger Bags","手拿包 Clutch Bags","双肩包 Travel Bags"]},
+		{"name":"配饰 Accessories","subnav":["所有配饰","钱包 Wallets","手表 Watches","太阳眼镜 Sunglasses","饰品 Jewelry","腰带 Belts","围巾 Scarf","小配件 Small Acc."]},
+		{"name":"鞋履 Shoes","subnav":["所有鞋履","平底鞋 Flat Shoes","高跟鞋 Pumps","靴子 Boots"]},
+		{"name":"服装 Clothes","subnav":["所有服装","卫衣 Hoodies","衬衫 Shirt","针织/毛衫 Knit/Sweater","夹克 Jacket","大衣 Coat","半裙 Skirts","连衣裙 Dresses"]}
+	]}
+
+	
+]
+
+

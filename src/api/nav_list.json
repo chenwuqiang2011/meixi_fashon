@@ -1,0 +1,50 @@
+[
+	{"name":"主页","list":[]},
+
+	{"name":"新近新品","list":[
+		{"name":"今日上新","subnav":["今日上新","昨日上新","本周上新"]},
+		{"name":"男仕","subnav":["男仕 Man","包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]},
+		{"name":"女士","subnav":["包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]}
+	]},
+
+	{"name":"全球性购","list":[]},
+
+	{"name":"女士","list":[
+		{"name":"包袋 Bags","subnav":["所有包袋","手提包 Totes","单肩包 Shoulder Bags","斜挎包 Messenger Bags","手拿包 Clutch Bags","双肩包 Travel Bags"]},
+		{"name":"配饰 Accessories","subnav":["所有配饰","钱包 Wallets","手表 Watches","太阳眼镜 Sunglasses","饰品 Jewelry","腰带 Belts","围巾 Scarf","小配件 Small Acc."]},
+		{"name":"鞋履 Shoes","subnav":["所有鞋履","平底鞋 Flat Shoes","高跟鞋 Pumps","靴子 Boots"]},
+		{"name":"服装 Clothes","subnav":["所有服装","卫衣 Hoodies","衬衫 Shirt","针织/毛衫 Knit/Sweater","夹克 Jacket","大衣 Coat","半裙 Skirts","连衣裙 Dresses"]}
+	]},
+
+	{"name":"男仕","list":[
+		{"name":"包袋 Bags","subnav":["所有包袋","手提包 Totes","单肩包 Shoulder Bags","斜挎包 Messenger Bags","手拿包 Clutch Bags","双肩包 Travel Bags"]},
+		{"name":"配饰 Accessories","subnav":["所有配饰","钱包 Wallets","手表 Watches","太阳眼镜 Sunglasses","腰带 Belts","围巾 Scarf","领带 Ties","数码周边 Technology","小配件 Small Acc."]},
+		{"name":"鞋履 Shoes","subnav":["所有鞋履","平底鞋 Flat Shoes","休闲皮鞋 Casual Shoes","正装皮鞋 Business Shoes"]},
+		{"name":"服装 Clothes","subnav":["所有服装","卫衣 Hoodies","T恤/POLO T-Shirt/POLO","衬衫 Shirt","夹克 Jacket","大衣 Coat","羽绒服/棉衣 Down Jacket","休闲裤 Casual Pants"]}
+	]},
+
+	{"name":"童装","list":[
+		{"name":"儿童 Children","subnav":["T恤/POLO T-Shirt/POLO","衬衫 Shirt,卫衣 Hoodies","羽绒服/棉服 Down Jackets","连衣裙 Dresses","休闲裤 Casual Pants"]},
+		{"name":"热门品牌","subnav":["Gucci 古驰","Kenzo 高田贤三","Little Dickins & Jones","RIDERS ON THE STORM"]}
+	]},
+
+	{"name":"腕表","list":[
+		{"name":"腕表","subnav":["男仕腕表","女士腕表","石英石","机械表"]},
+		{"name":"热门品牌","subnav":["sevenfriday","Calvin Klein 卡尔文·克莱恩","Daniel Wellington 丹尼尔·惠灵顿","Tissot 天梭","OMEGA 欧米茄","Longines 浪琴"]}
+	]},
+
+	{"name":"品牌","list":[
+		{"name":"国际大牌 Luxury Brand","subnav":["Diesel 迪赛","Chloe 蔻依","Dior 迪奥","BVLGARI 宝格丽","3.1 Phillip Lim 菲利林","Love Moschino 莫斯奇诺","Moschino 莫斯奇诺"]},
+		{"name":"设计师品牌 Designer Brand","subnav":["MSGM","Circle","Iceberg 冰山","MABYMA STUDIO","Dune","ChloeChen","Versus 范瑟丝","P.A.R.O.S.H."]}
+	]},
+
+	{"name":"特惠","list":[
+		{"name":"国际大牌 Luxury Brand","subnav":["Diesel 迪赛","Chloe 蔻依","Dior 迪奥","BVLGARI 宝格丽","3.1 Phillip Lim 菲利林","Love Moschino 莫斯奇诺","Giuseppe Zanotti 朱塞佩·萨诺","Moschino 莫斯奇诺"]},
+		{"name":"男仕 Man","subnav":["男仕 Man","包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]},
+		{"name":"女士 Woman","subnav":["包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]}
+	]},
+
+	{"name":"Mzine","list":[]}
+]
+
+

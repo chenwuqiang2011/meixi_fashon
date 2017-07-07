@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>nav</title>
+	<style>
+		.box{
+			width:100px;
+			/*height:100px;*/
+			background:blue;
+		}
+		div{
+			/*width:200px;*/
+			overflow: hidden;
+			border: 1px solid #ddd;
+		
+			margin-left:10px;
+		}
+		ul{
+				float:left;
+		}
+	</style>
+	<script src="./lib/jquery3.1.1.js"></script>
+	<script>
+		jQuery(function($){
+			var arr=[
+						{name:"新近新品",list:[
+							{name:"今日上新",subnav:["今日上新","昨日上新","本周上新"]},
+							{name:"男仕",subnav:["男仕 Man","包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]},
+							{name:"女士",subnav:["包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]}
+						]},
+
+						{name:"主页",list:[
+							{uncreate:false}
+						]},
+
+						{name:"男士",list:[
+							{name:"今日上新",subnav:["今日上新","昨日上新","本周上新"]},
+							{name:"男仕",subnav:["男仕 Man","包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]},
+							{name:"女士",subnav:["包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]}
+						]}
+					]
+			console.log(arr)
+			var arr1 = JSON.stringify(arr);
+			console.log(arr1);
+			// arr.map(function(item,idx){
+			// 	$("<div/>").addClass("list_title").html(`
+			// 			<p>${item.name}</p>
+			// 			<ul id=list_${idx}></ul>
+			// 		`
+			// 		).appendTo($(".nav"));
+			// 	console.log(item.subnav,idx);
+			// 	var goods = item.subnav;
+			// 	goods.map(function(item2){
+			// 		console.log(item2)
+			// 		$("<li/>").html(item2).appendTo($("#list_"+idx));
+			// 	});
+			// });
+			
+			arr.map(function(item,idx){
+				$("<div/>").appendTo($(".nav"));
+				try{
+
+					item.list.map(function(item2,idx2){
+						$("<ul/>").html(`<p>${item2.name}</p>`).appendTo($(".nav div").eq(idx)) ;
+						item2.subnav.map(function(item3){
+							console.log(idx,idx2)
+							var $ul=$(".nav div").eq(idx);
+							$("<li/>").html(item3).appendTo($($ul).find("ul").eq(idx2));
+						})
+					})
+					
+				}catch(e){
+					$(".nav div").eq(idx).html("");
+				};			
+			})
+		});
+	</script>
+</head>
+<body>
+	<div class="box">
+		<p>这是一个div</p>
+		<ul>
+			<li><a href="">1</a></li>
+			<li><a href="">2</a></li>
+			<li><a href="">3</a></li>
+		</ul>
+		<ul>
+			<li><a href="">1</a></li>
+			<li><a href="">2</a></li>
+			<li><a href="">3</a></li>
+		</ul>
+	</div>
+	<div class="nav"></div>
+</body>
+</html>
+
+<!-- 今日上新
+昨日上新
+本周上新
+ 
+男仕 Man
+包袋 Bags
+配饰 Accessories
+鞋履 Shoes
+服装 Clothes
+ 
+女士 Woman
+包袋 Bags
+配饰 Accessories
+鞋履 Shoes
+服装 Clothes -->

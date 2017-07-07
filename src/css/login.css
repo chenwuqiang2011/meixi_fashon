@@ -1,0 +1,192 @@
+@charset "UTF-8";
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, menu, input, button, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 12px "微软雅黑",Helvetica,sans-serif;
+  line-height: 1.5;
+  background-color: #fff;
+  color: #555;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix:after {
+  display: block;
+  clear: both;
+  content: ".";
+  visibility: hidden;
+  height: 0;
+}
+
+.headerbg {
+  width: 100%;
+  min-width: 1200px;
+  background: #fff;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.headerbg .header {
+  width: 1200px;
+  margin: 0 auto;
+  height: 146px;
+  line-height: 146px;
+}
+
+.headerbg .header .logo {
+  width: 160px;
+  height: 65px;
+  margin-top: 39px;
+}
+
+.headerbg .header .logo a {
+  display: block;
+  width: 160px;
+  height: 65px;
+}
+
+.headerbg .header .logo a img {
+  display: block;
+}
+
+.headerbg .header .help {
+  position: relative;
+  left: -38px;
+}
+
+.headerbg .header .phone {
+  position: relative;
+}
+
+.headerbg .header .phone span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url(../img/headico.png) no-repeat;
+  position: absolute;
+  top: 63px;
+  left: -23px;
+}
+
+.headerbg .shadow {
+  background: url(../img/headerbg.png) 0 bottom repeat-x;
+  width: 100%;
+  height: 8px;
+}
+
+.content {
+  position: relative;
+  height: 535px;
+  background: #fefefe url(../img/login.jpg) center 0 no-repeat;
+}
+
+.login {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  margin-left: 150px;
+  width: 298px;
+  background: #fff;
+  padding: 30px 40px;
+  background: #fff;
+  border: solid 1px #e8e8e8;
+  box-shadow: 3px 3px 7px #eee;
+}
+
+.login .msg_dl {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login .username {
+  border: solid 1px #e8e8e8;
+  background: #fff;
+  margin-bottom: 10px;
+  padding: 4px 0;
+}
+
+.login .username .tou, .login .username .lock {
+  width: 26px;
+  height: 26px;
+  padding-right: 4px;
+  background: url(../img/memberico.gif) no-repeat;
+  margin: 0 4px 0 6px;
+  border-right: solid 1px #e8e8e8;
+}
+
+.login .username .telphone {
+  width: 240px;
+  margin: 0 0 0 4px;
+  position: relative;
+}
+
+.login .username .telphone input {
+  width: 100%;
+  padding: 0;
+  outline: none;
+  border: none;
+  font-size: 14px;
+  height: 26px;
+  line-height: 26px;
+  color: #333;
+}
+
+.login .username .lock {
+  background-position: -26px 0;
+}
+
+.login .auto_login label {
+  position: relative;
+}
+
+.login .auto_login label input {
+  position: absolute;
+  top: 3px;
+}
+
+.login .auto_login label span {
+  display: inline-block;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.login .login_btn button {
+  width: 100%;
+  height: 48px;
+  background: #333;
+  color: #fff;
+  border: none;
+  margin-top: 30px;
+  border-radius: 3px;
+  font-size: 18px;
+  font-family: "微软雅黑";
+}
+
+.login .sign_up {
+  text-align: center;
+  margin: 25px 0 15px 0;
+}
+
+.login .sign_up a {
+  color: #669aca;
+}

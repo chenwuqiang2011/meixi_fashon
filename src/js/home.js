@@ -4,6 +4,43 @@
 require(['config'],function(){
 	require(['jquery','gdszoom','lxCarousel'],function(){
 
+			//发送ajax请求生成导航列表；
+
+			$.ajax({
+				url:"./api/nav_list.json",
+				dataType:"json",
+				success:function(res){
+					res.map(function(item,idx){
+						$("<div/>").addClass("subnav_list").appendTo($(".subnav"));
+						try{
+							item.list.map(function(item2,idx2){
+								$("<ul/>").appendTo($(".subnav div").eq(idx)) ;
+								item2.subnav.map(function(item3,idx3){
+									var $ul=$(".subnav div").eq(idx);
+									
+									if(idx3 == 0){
+										$("<li/>").html(`<a href="#" class="active">${item3}</a>`).appendTo($($ul).find("ul").eq(idx2));
+									}else{
+										$("<li/>").html(`<a href="#">${item3}</a>`).appendTo($($ul).find("ul").eq(idx2));
+									}
+								});
+							});
+							
+						}catch(e){
+							$(".nav div").eq(idx).html("");
+						};			
+					})
+				}
+			});
+
+			$.ajax({
+				url:"./api/goods.json",
+				dataType:"json",
+				success:function(res){
+					console.log(res)
+				}
+			})
+
 		/*
 			轮播图
 			var defaults = {
@@ -34,7 +71,7 @@ require(['config'],function(){
 			});
 
 			//鼠标移到左上角的手机图标，出现APP下载二维码
-			var timer;
+	
 			$(".app").mouseenter(function(){
 				console.log(999)
 				// clearTimeout(timer);
@@ -45,7 +82,18 @@ require(['config'],function(){
 				// },500);
 					$(".app").find(".ewm").remove();
 				
+			});
+
+			//导航移入移出；
+		
+			$(".nav_list li").mouseenter(function(){	
+				$(".subnav_list").eq($(this).index()).show().siblings().hide();
+				// $(".header_nav_n .header_nav_sel").eq(thisIndex).show().siblings().hide()
+			});
+			$(".nav_list").mouseleave(function(){
+				$(".subnav_list").hide();
 			})
 		});
+
 	});
 });

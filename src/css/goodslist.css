@@ -247,67 +247,7 @@ li {
 }
 
 /* 内容样式 */
-.special_offer {
-  width: 1200px;
-  margin: 0 auto;
-}
 
-.special_offer .cut_title {
-  position: relative;
-  height: 54px;
-  margin: 23px 0 10px 0;
-}
-
-.special_offer .cut_title .line {
-  position: absolute;
-  border-bottom: 1px solid #e8e8e8;
-  top: 24px;
-  left: 0;
-  width: 100%;
-  z-index: 1;
-}
-
-.special_offer .cut_title p {
-  position: relative;
-  width: 260px;
-  background: #fff;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 16px;
-  font-family: 微软雅黑;
-  color: #333;
-  z-index: 2;
-}
-
-.special_offer .cut_title p span {
-  color: #666;
-}
-
-.special_offer .special_left {
-  float: left;
-  width: 392px;
-}
-
-.special_offer .special_left .special_left_down {
-  margin-top: 12px;
-}
-
-.special_offer .special_middle {
-  float: left;
-  width: 392px;
-  height: 498px;
-  margin: 0 12px;
-  font-size: 0;
-}
-
-.special_offer .special_right {
-  float: left;
-  width: 392px;
-}
-
-.special_offer .special_right .special_right_down {
-  margin-top: 12px;
-}
 
 /* 底部样式 */
 .footer {

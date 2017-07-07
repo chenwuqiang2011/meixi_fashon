@@ -148,6 +148,7 @@ li{
 	}
 	.nav{
 		padding-top: 10px;
+		position:relative;
 		.nav_list{
 			width: $wid;
     		margin: $mgauto;
@@ -162,6 +163,44 @@ li{
 				    font-weight: bold;
     			}
     		}
+			.subnav{
+			    position: absolute;
+			    width: $wid;
+			    top: 71px;
+			    z-index: 99;
+
+			    text-align: center;
+			    background: #fff;
+			    border-top: solid 1px #e8e8e8;
+			    opacity: .95;
+			    .subnav_list{
+			    	display: none;
+			    	overflow: hidden;
+			    	ul{
+			    		display: inline-block;
+					    width: 200px;
+					    margin: 0 30px;
+	    			    padding: 25px 0 65px 0;
+					    text-align: left;
+					    vertical-align: top;
+					    position: relative;
+						li a{
+							display: block;
+							clear:both;
+						    padding: 7px 0;
+						    overflow: hidden;
+						    white-space: nowrap;
+						    text-overflow: ellipsis;
+						    font-weight: 400;
+						    color:#666;
+						}
+						.active{
+							 font-weight: 600;
+
+						}
+			    	}
+			    }
+			}
 		}
 	}
 	.headerShadow{

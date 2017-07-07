@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>register</title>
+	<link rel="stylesheet" href="../css/register.css">
+	<link rel="stylesheet" href="../css/footer.css">
+</head>
+<body>
+	<div class="headerbg">
+		<div class="header clearfix">
+			<div class="logo fl">
+				<a href="#"><img src="../img/logo_02.png" alt=""></a>
+			</div>
+			<div class="help_phone fr clearfix">
+				<div class="help fl">需要帮助</div>
+				<div class="phone fr">
+					<span></span>
+					400-250-630
+				</div>
+			</div>
+		</div>
+		<div class="shadow"></div>
+	</div>
+	<div class="content">
+		<div class="login">
+			<form action="" class="sign_in">
+				<div class="msg">
+					<div class="msg_dl">注册美西账户</div>
+					<div class="username clearfix">
+						<div class="tou fl"></div>
+						<div class="telphone fr">
+							<input name="username" class="telphone_num" type="text" placeholder="请输入常用手机号">
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="telphone_msg fl clearfix">
+							<div class="telphone_msg_pic fl"></div>
+							<div class="telphone_msg_value fr">
+								<input name="msg_value" class="msg_value" type="text" maxlength="6" placeholder="短信验证码">
+							</div>
+						</div>
+						<div class="msg_send fr"><a href="#">发送验证码</a></div>
+					</div>
+					<div class="username clearfix">
+						<div class="lock fl"></div>
+						<div class="telphone fr">
+							<input name="password" class="password" type="password" placeholder="请输入密码">
+						</div>
+					</div>
+					<div class="username confirm clearfix">
+						<div class="lock fl"></div>
+						<div class="telphone fr">
+							<input name="password" class="password" type="password" placeholder="请确认密码">
+						</div>
+					</div>
+				
+
+					<div class="login_btn">
+                		<button type="button">注册</button>
+               		</div>
+               		<p class="sign_up">已注册？<a href="#">登录</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<#include file="./footer.html"/>
+<!-- <object style="border:0px" type="text/x-scriptlet" data="footer.html" width=100% height=30></object>  -->
+</body>
+</html>
