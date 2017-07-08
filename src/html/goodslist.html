@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" href="../css/goodslist.css">
+	<!-- 轮播图样式 -->
+	<link rel="stylesheet" href="./lib/jquery.lxCarousel/jquery.lxCarousel.css">
+	<script src="./js/require.js" data-main="./js/home"></script>
+
+</head>
+<body>
+	<!-- 头部 -->
+	<header class="headerbg">
+		<div class="header_t_bg">
+			<div class="header clearfix">
+				<div class="left fl">
+					<div class="head-app  clearfix">
+						<span><em class="icon-app fl"></em>4000-250-630</span>
+						<div class="app fr">
+							<a href="#" class="ewm1">
+								<em class="icon-app2 fl"></em>
+								下载美西时尚APP
+							</a>
+							<div style="display: none;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="right clearfix fr">
+					<div class="login fl">
+						<span><a href="#">登录</a></span>
+						<span><a href="#">注册</a></span>
+					</div>
+					<div class="car fr" >
+						<em class="icon-app3"></em>
+						<span>购物袋(
+							<span class="goodsnum">0</span>
+							)
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--logo&search-->
+		<div class="header_middle">
+            <div class="header_logo"><a href="/" title="美西时尚"><img src="../img/logo.png" width="220" height="60" alt="美西时尚"></a></div>
+            <div class="header_search clearfix">
+                <div class="header_search_int fl"><input id="sch_kwd" type="text" value="" placeholder="请输入关键字"></div>
+                <button class="header_search_btn fr"><em></em></button>
+            </div>
+        </div>
+
+        <!--nav导航-->
+        <div class="nav">
+        	<div class="nav_list">
+        		<ul class="clearfix">
+        			<li><a href="#">首页</a></li>
+        			<li><a href="#">新近单品</a></li>
+        			<li><a href="#">全球购</a></li>
+        			<li><a href="#">女士</a></li>
+        			<li><a href="#">男仕</a></li>
+        			<li><a href="#">童装</a></li>
+        			<li><a href="#">腕表</a></li>
+        			<li><a href="#">品牌</a></li>
+        			<li><a href="#">特惠</a></li>
+        			<li><a href="#">M潮流</a></li>
+        		</ul>
+		        <!-- 二级导航 -->
+		        <div class="subnav"></div>
+        	</div>
+        </div>
+        <!--导航条边框背影-->
+        <div class="headerShadow"></div>
+	</header>
+	<!-- 内容区 -->
+	<div class="container clearfix">
+		<div class="title"></div>
+		<div class="content_left fl">
+			
+		</div>
+		<div class="content_right fr">
+			<div class="rank"></div>
+			<div class="goodslist"></div>
+		</div>
+	</div>
+	<!--底部footer-->
+	<div class="footer">
+		<div class="footer_t">
+			<!-- 购物指南 -->
+			<div class="shopping_help">
+				<ul>
+					<li class="no_link">购物指南</li>
+					<li><a href="#">购物流程</a></li>
+					<li><a href="#">配送方式</a></li>
+				</ul>
+				<ul>
+					<li class="no_link">支付方式</li>
+					<li><a href="#">如何付款</a></li>
+					<li><a href="#">发票制度</a></li>
+				</ul>
+				<ul>
+					<li class="no_link">商品说明</li>
+					<li><a href="#">商品尺码</a></li>
+					<li><a href="#">商品包装费</a></li>
+				</ul>
+				<ul>
+					<li class="no_link">客服中心</li>
+					<li><a href="#">七天退换</a></li>
+					<li><a href="#">常见问题</a></li>
+				</ul>
+			</div>
+			<!-- 营业时间 -->
+			<div class="service_phone">
+                <span class="no_link">客服电话</span>
+                <h5>4000-250-630</h5>
+                <p>工作日 08:30-21:30</p>
+                <p>节假日 10:00-18:00</p>
+            </div>
+			<!-- 杂志订阅 -->
+			<div class="supscrition">
+                <p>订阅美西时尚杂志</p>
+                <input class="email" id="email" type="text" value="" placeholder="E-mail">
+                <p class="booked"><a href="#">即刻订阅</a></p>
+			</div>
+			<!-- app下载 -->
+			<div class="download">
+				<div class="download_app fl">
+                        <span class="no_link">美西时尚APP</span>
+                        <div><span class="app_img"></span></div>
+                </div>
+                <div class="download_wechat fr">
+                        <span class="no_link">官方微信</span>
+                        <div><span class="wechat_img"></span></div>
+                </div>
+                <div class="clear"></div>
+                <p>手机扫码即可下载美西时尚APP或关注官方微信 </p>
+			</div>
+		</div>
+		<div class="footer_m">
+			<div class="promise">
+				<ul>
+					<li>
+						<div class="footer_icon1"></div>
+						<span>100%保证正品</span>
+					</li>
+					<li>
+						<div class="footer_icon2"></div>
+						<span>七天无忧退货</span>
+					</li>
+					<li>
+						<div class="footer_icon3"></div>
+						<span>九年专注，品质保障</span>
+					</li>
+				</ul>
+			</div>
+			<div class="footer_shadow"></div>
+			<div class="footer_b">
+				<div class="copyright fl">
+					<ul>
+						<li style="border-left:none;"><a href="#">媒体报道</a></li>
+						<li><a href="#">正品保证</a></li>
+						<li><a href="#">业务合作</a></li>
+						<li><a href="#">隐私声明</a></li>
+						<li><a href="#">加入美西</a></li>
+						<li><a href="#">联系我们</a></li>
+					</ul>
+					<p>
+						Copyright ©2008-2017，美西时尚-高端时尚生活电商
+					</p>
+					<div>
+						<span>沪ICP备09001221号</span>
+						<span>沪公网安备11010802017116号</span>
+					</div>
+				</div>
+				<div class="footer_cut"></div>
+				<div class="cooperation fr">
+					<h6>合作支持</h6>
+					<ul>
+						<li class="cooperate1"><a href="#"></a></li>
+						<li class="cooperate2">
+							<a href="#"><span></span><i>银联特约商户</i></a>
+							
+						</li>
+						<li class="cooperate3"><a href="#"></a></li>
+						<li class="cooperate4"><a href="#"></a></li>
+						<li class="cooperate5"><a href="#"></a></li>
+						<li class="cooperate6" style="padding-right: 0"><a href="#"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

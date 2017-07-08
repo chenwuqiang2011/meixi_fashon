@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>nav</title>
+	<style>
+		body{
+			margin:0;
+			padding:0;
+			background:#f5f5f5;
+			font-size:12px;
+		}
+		.box{
+			width:100px;
+			/*height:100px;*/
+			background:blue;
+		}
+		.list{
+		    margin-top: 5px;
+   			 width: 928px;
+		}
+		.list li{
+			list-style: none;
+		    float: left;
+		    width: 205px;
+		    padding: 10px;
+		    margin: 0 5px 5px 0;
+		    border: solid 1px #fff;
+		    background: #fff;
+		    transition-duration: .1s;
+		    transition-timing-function: linear;
+		    position: relative;
+		}
+		.clearfix:after {
+		    display: block;
+		    clear: both;
+		    content: ".";
+		    visibility: hidden;
+		    height: 0;
+		}
+		.pic{
+		    display: block;
+		    width: 207px;
+		    height: 230px;
+		    text-align: center;
+		    padding-top: 10px;
+		    text-align:center;
+		}
+		.pic img{
+			display:block;
+			width:180px;
+			height:180px;
+		}
+		.global{
+		    width: 48px;
+		    height: 24px;
+		    margin-right: 10px;
+		    text-align: left;
+		}
+		.goodsname a{
+			display: block;
+			height: 45px;
+			padding: 0 20px 9px 20px;
+			line-height: 2;
+			text-align: left;
+			overflow: hidden;
+			white-space: nowrap;
+			-o-text-overflow: ellipsis;
+			text-overflow: ellipsis; 
+			text-decoration:none;
+			color:#666;
+		}
+		.goodsname a span{
+			font-weight: bold;
+			color:#000;
+		}
+		.price{
+		    height: 18px;
+    		line-height: 18px;
+   			padding: 1px 0;
+      	    height: 26px;
+    		padding: 0 20px 15px 20px;
+    		text-align:left;
+    		color:#666;
+		}
+	</style>
+	<script src="../lib/jquery3.1.1.js"></script>
+	<script>
+		jQuery(function($){
+			var arr=[
+						{name:"新近新品",list:[
+							{name:"今日上新",subnav:["今日上新","昨日上新","本周上新"]},
+							{name:"男仕",subnav:["男仕 Man","包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]},
+							{name:"女士",subnav:["包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]}
+						]},
+
+						{name:"主页",list:[
+							{uncreate:false}
+						]},
+
+						{name:"男士",list:[
+							{name:"今日上新",subnav:["今日上新","昨日上新","本周上新"]},
+							{name:"男仕",subnav:["男仕 Man","包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]},
+							{name:"女士",subnav:["包袋 Bags","配饰 Accessories","鞋履 Shoes","服装 Clothes"]}
+						]}
+					]
+
+			var arr1 = JSON.stringify(arr);
+
+			arr.map(function(item,idx){
+				$("<div/>").appendTo($(".nav"));
+				try{
+
+					item.list.map(function(item2,idx2){
+						$("<ul/>").html(`<p>${item2.name}</p>`).appendTo($(".nav div").eq(idx)) ;
+						item2.subnav.map(function(item3){
+							console.log(idx,idx2)
+							var $ul=$(".nav div").eq(idx);
+							$("<li/>").html(item3).appendTo($($ul).find("ul").eq(idx2));
+						})
+					})
+					
+				}catch(e){
+					$(".nav div").eq(idx).html("");
+				};			
+			})
+
+			$.ajax({
+				url:"../api/goods.json",
+				dataType:"json",
+				success:function(res){
+					console.log(res)
+					res.forEach(function(item){
+						// $(".title").html(item.type);
+						item.list.map(function(item2){
+							item2.goods.map(function(item3){
+								try{
+									$("<li/>").addClass("goods").html(`
+										<div class="details">
+											<div class="pic">
+												<a href="#"><img src="${item3.imgurl}" alt="" /></a>
+											</div>
+											<div class="global ${item3.true}"></div>
+											<div class="goodsname">
+												<a href="#">
+													<span>${item2.brand}</span><br/>
+													${item3.name}
+												</a>
+											</div>
+											<div class="price">
+												<p>${item3.price}</p>
+											</div>
+										</div>
+									`).appendTo($(".list"));
+								}catch(err){
+									console.log(666)
+								}
+								
+							})
+						})
+						
+					})
+				}
+			})
+
+		});
+	</script>
+</head>
+<body>
+	<div class="box">
+		<p>这是一个div</p>
+		<ul>
+			<li><a href="">1</a></li>
+			<li><a href="">2</a></li>
+			<li><a href="">3</a></li>
+		</ul>
+		<ul>
+			<li><a href="">1</a></li>
+			<li><a href="">2</a></li>
+			<li><a href="">3</a></li>
+		</ul>
+	</div>
+	<div class="nav"></div>
+	<div class="goodslist">
+		<div class="title"></div>
+		<ul class="list clearfix"></ul>
+	</div>
+</body>
+</html>
+
+<!-- 今日上新
+昨日上新
+本周上新
+ 
+男仕 Man
+包袋 Bags
+配饰 Accessories
+鞋履 Shoes
+服装 Clothes
+ 
+女士 Woman
+包袋 Bags
+配饰 Accessories
+鞋履 Shoes
+服装 Clothes -->

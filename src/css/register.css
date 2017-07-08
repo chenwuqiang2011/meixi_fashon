@@ -210,13 +210,16 @@ li {
   cursor: pointer;
 }
 
+.login .tips {
+  height: 30px;
+}
+
 .login .login_btn button {
   width: 100%;
   height: 48px;
   background: #333;
   color: #fff;
   border: none;
-  margin-top: 30px;
   border-radius: 3px;
   font-size: 18px;
   font-family: "微软雅黑";

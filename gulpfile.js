@@ -25,9 +25,9 @@ var browserSync = require("browser-sync");
 
 gulp.task("mymeixi",function(){
 	browserSync({
-		server:"./src/",
+		// server:"./src/",
 		// 代理服务器
-		// proxy:'http://localhost:10010',
+		proxy:'http://localhost:8008',
 		//修改默认端口
 		// port:10011,
 		files:["./src/**/*.html","./src/css/*.css","./src/api/*.php"]

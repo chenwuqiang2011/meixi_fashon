@@ -1,0 +1,149 @@
+@charset "UTF-8";
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, menu, input, button, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 12px "微软雅黑",Helvetica,sans-serif;
+  line-height: 1.5;
+  background-color: #fff;
+  color: #555;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix:after {
+  display: block;
+  clear: both;
+  content: ".";
+  visibility: hidden;
+  height: 0;
+}
+
+.headerbg {
+  width: 100%;
+  min-width: 1200px;
+  background: #fff;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.headerbg .header {
+  width: 1200px;
+  margin: 0 auto;
+  height: 146px;
+  line-height: 146px;
+}
+
+.headerbg .header .logo {
+  width: 160px;
+  height: 65px;
+  margin-top: 39px;
+}
+
+.headerbg .header .logo a {
+  display: block;
+  width: 160px;
+  height: 65px;
+}
+
+.headerbg .header .logo a img {
+  display: block;
+}
+
+.headerbg .header .help {
+  position: relative;
+  left: -38px;
+}
+
+.headerbg .header .phone {
+  position: relative;
+}
+
+.headerbg .header .phone span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url(../img/headico.png) no-repeat;
+  position: absolute;
+  top: 63px;
+  left: -23px;
+}
+
+.headerbg .shadow {
+  background: url(../img/headerbg.png) 0 bottom repeat-x;
+  width: 100%;
+  height: 8px;
+}
+
+.content {
+  position: relative;
+  height: 535px;
+  background: #fefefe url(../img/login.jpg) center 0 no-repeat;
+}
+
+.login {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  margin: 120px;
+  width: 298px;
+  background: #fff;
+  padding: 30px 40px;
+  border: solid 1px #e8e8e8;
+  box-shadow: 3px 3px 7px #eee;
+}
+
+.login h1 {
+  font-size: 30px;
+  text-align: center;
+}
+
+.login span {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  font-size: 30px;
+  margin: 0 auto;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+
+.login div {
+  height: 40px;
+  width: 50%;
+  color: #000;
+  font-size: 18px;
+  margin: 10px auto;
+  text-align: center;
+  line-height: 40px;
+  background: #999;
+  border-radius: 10px;
+}
+
+.login .logout {
+  width: 25%;
+  text-align: center;
+  height: 20px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 10px;
+}
