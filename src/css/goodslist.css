@@ -39,7 +39,6 @@ li {
 .headerbg {
   width: 100%;
   min-width: 1200px;
-  margin-bottom: 20px;
 }
 
 .headerbg .header_t_bg {
@@ -129,6 +128,17 @@ li {
   background: url(../img/headico.png) no-repeat -40px 0;
   position: absolute;
   left: 0;
+}
+
+.headerbg .header_t_bg .header .right .car .total_car {
+  position: absolute;
+  right: 0;
+  bottom: -65px;
+  width: 300px;
+  background: blue;
+  min-height: 50px;
+  z-index: 999;
+  display: none;
 }
 
 .headerbg .header_middle {
@@ -246,8 +256,367 @@ li {
   height: 8px;
 }
 
-/* 内容样式 */
+.consult {
+  position: fixed;
+  right: 0;
+  bottom: 100px;
+  border: solid 1px #ddd;
+  background: #fff;
+  z-index: 2;
+}
 
+.consult ul li {
+  position: relative;
+}
+
+.consult ul li .consult_online {
+  display: block;
+  width: 58px;
+  height: 46px;
+  padding-top: 12px;
+  border-bottom: solid 1px #ddd;
+}
+
+.consult ul li .consult_online em {
+  display: block;
+  width: 35px;
+  height: 35px;
+  background: url(../img/consult.png) no-repeat;
+  margin: 0 auto;
+}
+
+.consult ul li:nth-child(2) em {
+  background-position: 0 -35px;
+}
+
+.consult ul li:nth-child(3) em {
+  background-position: 0 -70px;
+}
+
+.consult ul li:nth-child(4) em {
+  background-position: 0 -105px;
+}
+
+.consult ul li:hover {
+  background: #666;
+}
+
+.consult ul li:nth-child(1) :hover {
+  background-position: -35px 0;
+}
+
+.consult ul li:nth-child(2) :hover {
+  background-position: -35px -35px;
+}
+
+.consult ul li:nth-child(3) :hover {
+  background-position: -35px -70px;
+}
+
+.consult ul li:nth-child(4) :hover {
+  background-position: -35px -105px;
+}
+
+/* 内容样式 */
+.containerbg {
+  width: 100%;
+  min-width: 1200px;
+  background: #f5f5f5;
+  overflow: hidden;
+}
+
+.containerbg .container {
+  width: 1200px;
+  margin: 10px auto;
+}
+
+.containerbg .container .title {
+  background: #fff;
+  font-size: 32px;
+  margin-bottom: 10px;
+  height: 70px;
+  line-height: 70px;
+  padding-left: 15px;
+}
+
+.containerbg .container .content {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.containerbg .container .content .content_left {
+  width: 267px;
+}
+
+.containerbg .container .content .content_left .list {
+  background: #fff;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+.containerbg .container .content .content_left .list .listItem {
+  height: 52px;
+  line-height: 52px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.containerbg .container .content .content_left .list .listItem .lt_state {
+  font-size: 24px;
+  font-family: "宋体";
+}
+
+.containerbg .container .content .content_left .list .listItem_b {
+  display: none;
+  padding-bottom: 10px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .clear_chose {
+  text-align: right;
+  padding-top: 15px;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .chose {
+  padding-left: 5px;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .chose ul li a {
+  display: block;
+  position: relative;
+  padding: 5px 0 5px 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  outline: none;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .chose ul li a .lstCheck, .containerbg .container .content .content_left .list .listItem_b .chose ul li a .lstLab {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: url(../img/listico.gif) no-repeat;
+  position: absolute;
+  left: 0;
+  top: 7px;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .chose ul li a .lstLab {
+  background-position: 0 -14px;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .chose .priceChoose {
+  padding: 15px 0 10px 0;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .chose .priceChoose .priceStart {
+  margin-right: 5px;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .chose .priceChoose .priceInt {
+  border: solid 1px #ddd;
+  width: 107px;
+  height: 30px;
+  outline: none;
+  vertical-align: middle;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .chose .priceChoose .priceEnd {
+  margin-left: 5px;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .chose .chose_color {
+  padding-left: 5px;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .chose .chose_color .color_list {
+  width: 50%;
+}
+
+.containerbg .container .content .content_left .list .listItem_b .chose .pricebtn {
+  display: inline-block;
+  width: 100%;
+  height: 34px;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  line-height: 34px;
+  vertical-align: middle;
+}
+
+.containerbg .container .content .content_fixed {
+  position: fixed;
+  top: 0;
+}
+
+.containerbg .container .content .content_right {
+  width: 923px;
+  position: relative;
+}
+
+.containerbg .container .content .content_right .rank {
+  height: 55px;
+  line-height: 55px;
+  background: #fff;
+}
+
+.containerbg .container .content .content_right .rank .proFilter {
+  margin-left: 25px;
+}
+
+.containerbg .container .content .content_right .rank .proFilter span {
+  font-weight: bold;
+}
+
+.containerbg .container .content .content_right .rank .proFilter a {
+  margin-left: 35px;
+  display: inline-block;
+  padding-right: 12px;
+  position: relative;
+}
+
+.containerbg .container .content .content_right .rank .proFilter a .proSort {
+  display: block;
+  width: 10px;
+  height: 12px;
+  background: url(../img/crumbsIco.gif) no-repeat -62px 0;
+  position: absolute;
+  right: 0;
+  top: 21px;
+}
+
+.containerbg .container .content .content_right .rank .page {
+  margin: 18px 20px 0 0;
+}
+
+.containerbg .container .content .content_right .rank .page span {
+  float: left;
+  display: block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  margin: 0 9px;
+}
+
+.containerbg .container .content .content_right .rank .page .page_active {
+  background: #333;
+  color: #fff;
+  border: solid 1px #333;
+  border-radius: 2px;
+}
+
+.containerbg .container .content .content_right .goodslist {
+  margin-top: 5px;
+  width: 928px;
+}
+
+.containerbg .container .content .content_right .goodslist ul li {
+  float: left;
+  width: 205px;
+  padding: 10px;
+  margin: 0 5px 5px 0;
+  border: solid 1px #fff;
+  background: #fff;
+  transition-duration: .1s;
+  transition-timing-function: linear;
+  position: relative;
+}
+
+.containerbg .container .content .content_right .goodslist ul li .pic {
+  display: block;
+  width: 207px;
+  height: 230px;
+  text-align: center;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.containerbg .container .content .content_right .goodslist ul li .pic img {
+  display: block;
+  width: 180px;
+  height: 180px;
+}
+
+.containerbg .container .content .content_right .goodslist ul li .global {
+  width: 48px;
+  height: 24px;
+  margin-right: 10px;
+  text-align: left;
+  padding: 0 20px 15px 20px;
+}
+
+.containerbg .container .content .content_right .goodslist ul li .global .g_buy {
+  width: 48px;
+  height: 24px;
+  background: url(../img/saleTip1.png) -1px -3px no-repeat;
+}
+
+.containerbg .container .content .content_right .goodslist ul li .goodsname a {
+  display: block;
+  height: 45px;
+  padding: 0 20px 9px 20px;
+  line-height: 2;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: #666;
+}
+
+.containerbg .container .content .content_right .goodslist ul li .goodsname a span {
+  font-weight: bold;
+  color: #000;
+}
+
+.containerbg .container .content .content_right .goodslist ul li .price {
+  height: 18px;
+  line-height: 18px;
+  padding: 1px 0;
+  height: 26px;
+  padding: 0 20px;
+  text-align: left;
+  color: #666;
+}
+
+.containerbg .container .content .content_right .goodslist ul li .goodsCar {
+  padding: 0 20px;
+}
+
+.containerbg .container .content .content_right .goodslist ul li .goodsCar .bigCar {
+  height: 18px;
+  line-height: 18px;
+  width: 50%;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  background: #c53f40;
+}
+
+.containerbg .container .content .content_right .page {
+  margin: 18px 20px 0 0;
+  float: right;
+}
+
+.containerbg .container .content .content_right .page span {
+  float: left;
+  display: block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  margin: 0 9px;
+}
+
+.containerbg .container .content .content_right .page .page_active {
+  background: #333;
+  color: #fff;
+  border: solid 1px #333;
+  border-radius: 2px;
+}
 
 /* 底部样式 */
 .footer {

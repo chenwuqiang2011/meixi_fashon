@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>首页</title>
+	<title>商品列表页</title>
 	<link rel="stylesheet" href="../css/goodslist.css">
 	<!-- 轮播图样式 -->
-	<link rel="stylesheet" href="./lib/jquery.lxCarousel/jquery.lxCarousel.css">
-	<script src="./js/require.js" data-main="./js/home"></script>
+	<link rel="stylesheet" href="../lib/jquery.lxCarousel/jquery.lxCarousel.css">
+	<script src="../js/require.js" data-main="../js/goodslist"></script>
 
 </head>
 <body>
@@ -32,11 +32,15 @@
 						<span><a href="#">注册</a></span>
 					</div>
 					<div class="car fr" >
-						<em class="icon-app3"></em>
-						<span>购物袋(
-							<span class="goodsnum">0</span>
-							)
-						</span>
+						<div>
+							<em class="icon-app3"></em>
+							<span>购物袋(
+								<span class="goodsnum">0</span>
+								)
+							</span>
+						</div>
+						
+						<div class="total_car"></div>
 					</div>
 				</div>
 			</div>
@@ -55,7 +59,7 @@
         <div class="nav">
         	<div class="nav_list">
         		<ul class="clearfix">
-        			<li><a href="#">首页</a></li>
+        			<li><a href="../index.html">首页</a></li>
         			<li><a href="#">新近单品</a></li>
         			<li><a href="#">全球购</a></li>
         			<li><a href="#">女士</a></li>
@@ -74,16 +78,253 @@
         <div class="headerShadow"></div>
 	</header>
 	<!-- 内容区 -->
-	<div class="container clearfix">
-		<div class="title"></div>
-		<div class="content_left fl">
-			
-		</div>
-		<div class="content_right fr">
-			<div class="rank"></div>
-			<div class="goodslist"></div>
-		</div>
+	<!-- 咨询显示 -->
+	<div class="consult">
+		<ul>
+			<li>
+	            <a class="consult_online"  href="#">
+	            <em></em></a>
+			</li>			
+			<li>
+	            <a class="consult_online"  href="#">
+	            <em></em></a>
+			</li>			
+			<li>
+	            <a class="consult_online"  href="#">
+	            <em></em></a>
+			</li>			
+			<li>
+	            <a class="consult_online to_top"  href="#">
+	            <em></em></a>
+			</li>
+		</ul>
 	</div>
+	<div class="containerbg">
+		<div class="container">
+			<div class="title">商品列表</div>
+			<div class="content clearfix">
+				<div class="content_left fl">
+					<div class="list">
+						<div class="listItem">
+							<span class="fl">商品</span>
+							<span class="lt_state fr">-</span>
+						</div>
+						<div class="listItem_b" style="display: block;">
+							<div class="clear_chose">清除条件</div>
+							<div class="chose">
+								<ul class="chose_list">
+									<li>
+										<a href="#">包袋<em class="lstLab"></em></a>
+									</li>
+									<li>
+										<a href="#">服饰<em class="lstLab"></em></a>
+									</li>
+									<li>
+										<a href="#">腕表<em class="lstLab"></em></a>
+									</li>
+									<li>
+										<a href="#">童装<em class="lstLab"></em></a>
+									</li>
+									<li>
+										<a href="#">创意生活<em class="lstLab"></em></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>	
+					<div class="list list_t">
+						<div class="listItem list_tf">
+							<span class="fl">性别</span>
+							<span class="lt_state fr">+</span>
+						</div>
+						<div class="list_tt listItem_b">
+							<div class="clear_chose">清除条件</div>
+							<div class="chose">
+								<ul class="chose_list">
+									<li>
+										<a href="#" >男女
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li>
+										<a href="#" >男女
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li>
+										<a href="#" >男
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li>
+										<a href="#" >女
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li>
+										<a href="#" >儿童
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+										<li>
+										<a href="#"> 男童
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+										<li>
+										<a href="#" >女童
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="list list_s">
+						<div class="listItem list_sf">
+							<span class="fl">品牌</span>
+							<span class="lt_state fr">+</span>
+						</div>
+						<div class="list_st listItem_b">
+							<div class="clear_chose">清除条件</div>
+							<div class="chose">
+								<ul class="chose_list brand_list">
+									<li>
+										<a href="#" >Fendi芬迪
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li>
+										<a href="#" >BVLGARI 宝格丽
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li>
+										<a href="#" >Celine 赛琳
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li>
+										<a href="#" >Gucci 古驰
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li>
+										<a href="#" >Red Valentino 红·华伦天奴
+											<em class="lstCheck "></em>
+										</a>
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="list list_f">
+						<div class="listItem list_ff">
+							<span class="fl">价格</span>
+							<span class="lt_state fr">+</span>
+						</div>
+						<div class="list_ft listItem_b">
+							<div class="clear_chose">清除条件</div>
+							<div class="chose">
+								<ul class="chose_list">
+									<div class="priceChoose">
+										<input title="最低价" class="priceInt priceStart" type="text" value="" placeholder="￥ 最低价"> 
+										- <input title="最高价" class="priceInt priceEnd" type="text" value="" placeholder="￥ 最高价">
+									</div>
+									<a class="pricebtn" href="#">确认</a>
+
+								</ul>
+							</div>
+						</div>
+					</div>	
+					<div class="list list_g">
+						<div class="listItem list_gf">
+							<span class="fl">颜色</span>
+							<span class="lt_state fr">+</span>
+						</div>
+						<div class="list_gt listItem_b">
+							<div class="clear_chose">清除条件</div>
+							<div class="chose">
+								<ul class="chose_color clearfix">
+									<li data-id="1" class="color_list fl">
+										<a href="#" title="黑色 black">
+											黑色<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li data-id="1" class="color_list fl">
+										<a href="#" title="灰色 black">
+											灰色<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li data-id="1" class="color_list fl">
+										<a href="#" title="白色 black">
+											白色<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li data-id="1" class="color_list fl">
+										<a href="#" title="粉色 black">
+											粉色<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li data-id="1" class="color_list fl">
+										<a href="#" title="蓝色 black">
+											蓝色<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li data-id="1" class="color_list fl">
+										<a href="#" title="金色 black">
+											金色<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li data-id="1" class="color_list fl">
+										<a href="#" title="绿色 black">
+											绿色<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li data-id="1" class="color_list fl">
+										<a href="#" title="棕色 black">
+											棕色<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li data-id="1" class="color_list fl">
+										<a href="#" title="黄色 black">
+											黄色<em class="lstCheck "></em>
+										</a>
+									</li>
+									<li data-id="1" class="color_list fl">
+										<a href="#" title="紫色 black">
+											紫色<em class="lstCheck "></em>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>	
+
+				</div>
+				<div class="content_right fr">
+					<div class="rank clearfix">
+						<div class="proFilter fl">
+							<span>排序：</span>
+							<a href="#" title="新品">新品</a>
+							<a href="#" title="新品">人气
+								<em class="proSort"></em>
+							</a>
+							<a href="#" title="新品">价格
+								<em class="proSort"></em>
+							</a>
+						</div>
+						<div class="page fr"></div>
+					</div>
+					<div class="goodslist"></div>
+					<div class="page"></div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
 	<!--底部footer-->
 	<div class="footer">
 		<div class="footer_t">
