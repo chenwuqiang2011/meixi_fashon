@@ -72,6 +72,57 @@ require(['config'],function(){
 			goodslist = JSON.parse(goodslist);
 		}else{
 			goodslist = [];
+		};
+
+		//刷新页面自动加载购物车信息
+		showGoods();
+		function showGoods(){
+
+			//先清空购物车；
+			$(".goods_buy").html("");	
+			$ul = $("<ul/>");
+			var total = 0;
+			
+			var $html = goodslist.map(function(item){
+
+				//计算总价；				
+				total += item.qty * item.price.match(/\d+\.\d+$/);
+
+				return `
+						<li class="single_goods clearfix" id=${item.guid}>
+							<div class="goods_url fl">
+								<a href="#"><img src="${item.imgurl}" alt="" /></a>
+							</div>
+							<div class="goods_details fr">
+								<p class="goods_brand">${item.brand}</p>
+								<p class="goods_name">${item.name}</p>
+								<p class="goods_price">
+									<span>${item.price}</span>&nbsp;&nbsp;&nbsp;&times;
+									<span class="goods_qty">${item.qty}</span>
+								</p>
+							</div>
+							<div class="goods_delete">╳</div>
+						</li>
+				`
+			});
+
+			$(".goods_buy").html($ul.html($html));
+			//显示购物车商品数量；
+			$(".goodsnum").html(goodslist.length);
+
+			//显示总价
+			$(".total_price span").html(total.toFixed(2))
+
+			//判断显示总价；
+			if(goodslist.length == 0){
+				$(".total_price").hide();
+				$(".goods_emty").show();
+				
+			}else{
+				$(".total_price").show();
+				$(".goods_emty").hide();
+			}
+			
 		}
 
 		//点击添加到购物袋；
@@ -108,29 +159,63 @@ require(['config'],function(){
 			com.setCookie('goodslist',JSON.stringify(goodslist));
 
 			//同时将数据写入购物袋；
-			goodslist.map(function(item){
-				$("<ul/>").html(`
-						<li class="clearfix">
-							<div class="goods_url fl">
-								<img src="${item.imgurl}" alt="" />
-							</div>
-							<div class="goods_details fr">
-								<p class="goods_brand">${item.brand}</p>
-								<p class="goods_name">${item.name}</p>
-								<p class="goods_price">
-									<span>${item.price}</span>&times;
-									<span>${item.qty}</span>
-								</p>
-							</div>
-							<div class="goods_delete">X</div>
-						</li>
-					`).appendTo($(".total_car"));
+			showGoods(goodslist);
+
+		});
+
+		//点出删除商品及cookie;
+		$(".goods_buy").on("click",".goods_delete",function(){
+
+			var currentId = $(this).parent().attr("id");
+			
+			//删除当前商品；
+			$(this).parent().remove();
+
+			// 重新获取cookie中的值
+			var goodslist = com.getCookie('goodslist');
+
+			//转为json;
+			goodslist = JSON.parse(goodslist);
+
+			//遍历商品；
+			goodslist.map(function(item,idx){
+
+				//找出点击删除的商品；
+				if(item.guid === currentId){
+
+					//删除商品；
+					goodslist.splice(idx,1);
+					console.log(currentId);
+
+					//显示购物车商品数量；
+					$(".goodsnum").html(goodslist.length);
+
+					//判断当前cookie没有商品时，隐藏去结算；
+					if(goodslist.length == 0){
+						$(".total_price").hide();
+						$(".goods_emty").show();
+						
+					}else{
+						$(".total_price").show();
+						$(".goods_emty").hide();
+					}
+					
+					// 重新写入cookie
+					com.setCookie('goodslist',JSON.stringify(goodslist));
+
+					// 更新价格		
+					var _total = $(".total_price span").html();	
+					_total -= item.qty * item.price.match(/\d+\.\d+$/);
+					
+					$(".total_price span").html(_total);	
+				};
+
+
 			});
 
-			//显示购物车商品数量；
-			$(".goodsnum").html(goodslist.length);
+		
 
-		})
+		});
 
 		//导航移入移出；
 	
@@ -147,6 +232,19 @@ require(['config'],function(){
 		$(".to_top").click(function(){
 			$("body").animate({scrollTop:0},500);
 		});
+
+		//侧边栏移入显示二维码
+		var timer_app;
+		$(".phone_ewm").mouseover(function(){
+			clearTimeout(timer_app);
+			$(".consult_app").show();
+		});
+		$(".phone_ewm").mouseleave(function(){
+			timer_app = setTimeout(function(){
+				$(".consult_app").hide();
+			},500)
+		});
+
 
 		//发送ajax请求生成商品
 		var pageNo = 1;
