@@ -378,357 +378,158 @@ li{
 /* 内容样式 */
 .containerbg{
 	width:100%;
-	min-width:$wid;	
+	min-width:$wid;
+	// margin-top:20px;
+	background:#f5f5f5;
 	overflow:hidden;
 	.headerShadow{
 		background: url(../img/headerbg.png) 0 bottom repeat-x;
 		width: 100%;
 		height: 8px;
+
 		}
 	.container{
 		width:$wid;
-		margin:$mgauto;
-		margin-top:20px;
-		.car_title{
-		    margin-bottom: 10px;
-		    height: 43px;
-		    border: solid 1px #e8e8e8;
-		    background: #f5f5f5;
-		    color: #333;
-		    line-height: 43px;
-		    .title_01{
-	    	    width: 190px;
-	    	    .allpro{
-	    	    	cursor:pointer;
-	    	    	line-height: 43px;
-	    	    	input{
-	    	    		margin: 0 3px 0 30px;
-	    	    		border:none;
-    	    		    font-size: 12px;
-						color: #6c6c6c;
-						padding-left: 5px;
-	    	    	}
-	    	    }
-		    }
-		    .title_02{
-	    	    width: 255px;
-		    }
-		     .title_03{
-	    	    width: 175px;
-    			text-align: center;
-		    }
-		     .title_04{
-	    	    width: 215px;
-   				text-align: center;
-		    }
-		     .title_05{
-    	        width: 185px;
-   				 text-align: center;
-		    }
-		}
-		.carList{
-		    border: solid 1px #e8e8e8;
-		    padding: 0 30px;
-		    font-size: 14px;
-		    .goodsList{
-			    
-			    font-size: 14px;
-			    .tableList{
-		    	    border-collapse: collapse;
-   					border-spacing: 0;
-			 	  	tr{border-bottom: solid 1px #e8e8e8;
-						td{padding:23px 0;}
-			 	  	}
-
-   					.rel{
-   						width:415px;
-   						position:relative;
-   						.goods_check{
-						    position: absolute;
-						    top: 66px;
-						    left: 0;
-   						}
-   						.car_goods_pic{
-						    width: 98px;
-						    height: 93px;
-						    text-align: center;
-						    padding-top: 5px;
-						    margin-left: 30px;
-						    img{
-						    	width:75px;
-						    	height:90px;
-						    }
-   						}
-   						.car_goods_details{
-						    margin-left: 30px;
-   							text-align: left;
-   							margin-top:25px;
-   							p{
-   							 	height:23px;
-   							 	line-height: 23px;
-						 	    width: 250px;
-   							 }
-   							 .goods_name{
-   							 	overflow: hidden;
-   							 	white-space:nowrap;
-   							 	text-overflow:ellipsis;
-   							 }
-   						}
-   					}
-					.car_goods_price{
-						width:175px;
-						text-align:center;
-					}
-					.car_goods_num{
-						width:215px;
-						div{
-							margin:$mgauto;
-						    width: 102px;
-						    overflow: hidden;
-						    border: 1px solid #d9d9d9;
-						    a{
-					    	    display: block;
-							    float: left;
-							    width: 22px;
-							    height: 22px;
-							    color: #333;
-							    text-align: center;
-
-						    }
-						    .num_jian{
-						    	border-right:1px solid #d9d9d9;
-						    }
-						    .num_jia{
-						    	border-left:1px solid #d9d9d9;
-						    }
-						    input{
-					    	    display: block;
-					    	    border:none;
-							    float: left;
-							    width: 56px;
-							    height: 22px;
-							    color: #333;
-							    text-align: center;
-							    line-height: 22px;
-						    }
-						}
-					} 
-					.car_goods_total{
-						width:185px;
-						text-align:center;
-						div{
-
-						}
-					}
-					.car_goods_del{
-					    width: 128px;
-					    padding-left:20px;
-					    margin: 0 auto;
-					    text-align: left;
-					    line-height: 2;
-					}
-			    }
-		    }
-		}
-		.car_bar{
-		    margin-top: 10px;
-		    background: #fcfcfc;
-		    border: solid 1px #e8e8e8;
-		    .car_delete_l{
-		    	margin-top: 10px;
-		    	.allDelete{
-	    		    margin-right: 30px;
-	    	    	line-height: 43px;
-	    		    .allpro{
-    		    	 	cursor:pointer;
-		    	    	input{
-		    	    		margin: 0 3px 0 30px;
-		    	    		border:none;
-	    	    		    font-size: 12px;
-							color: #6c6c6c;
-							padding-left: 5px;
-		    	    	}
+		margin:10px auto;
+		.details{
+			background:#fff;
+			padding: 70px 0;
+			.details_fl{
+			    width: 510px;
+				margin-left: 95px;
+				.nor_img img{
+					height:460px;
+					cursor:pointer;
+					border:1px solid #ddd;
+				}
+			}
+			.details_fr{
+			    padding: 20px 0 0 85px;
+			    width: 425px;
+			    h1{
+		    	    font-weight: normal;
+		    	    a{
+	    	    	    font-size: 24px;
+					    display: block;
+					    color: #333;
+					    max-width: 361px;
+					    white-space: nowrap;
+					    overflow: hidden;
+					    text-overflow: ellipsis;
 		    	    }
-		    	}
-	    	    .allDelete_msg{
-					line-height: 43px;
-				    a{margin-right:30px;}
-	    	    }
-		    }
-		    .car_delete_r{
-	    	    margin: 15px 30px 10px 0;
-			    width: 350px;
-			    border-bottom: solid 1px #ebebeb;
-			    padding-bottom: 15px;
-			    text-align:right;
-			    .total_price{color:red;font-weight: bolder;font-size: 18px;}
-		    }
-		    .continue_buy{
-	    	    padding: 30px 30px 50px 30px;
-	    	    .go_on_buy{
-    	    	    display: block;
-				    width: 123px;
-				    height: 46px;
+			    }
+			    .details_name{
 				    font-size: 14px;
-				    padding-left: 15px;
-				    color: #fff;
-				    border: solid 1px #ccc;
-				    border-radius: 3px;
-				    text-align: center;
-				    line-height: 46px;
-				    color: #666;
-				    margin-top: 2px;
-				    background: url(../img/goonbuy.gif) 25px 18px no-repeat;
-	    	    }
-	    	    .buying{
-    	    	    cursor: pointer;
-    	    	    width: 165px;
-				    height: 50px;
-				    background: #c43f40;
-				    color: #fff;
-				    border: none;
-				    font-size: 16px;
-				    font-weight: bold;
-				    border-radius: 3px;
-	    	    }
-		    }
-		}
-		.like{
-			margin-top: 20px;
-   			border: solid 1px #e8e8e8;
-   			.your_fav{
-			    height: 70px;
-			    line-height: 70px;
-			    border-bottom: solid 1px #e8e8e8;
-			    margin: 0 30px;
-   			}
-   			.goods_like{
-   				width: 1140px;
-  				margin: 0 auto;
-   			}
-   			.goods_container{
-			    visibility: visible;
-			    overflow: hidden;
-			    position: relative;
-			    z-index: 2;
-			    left: 0px;
-			    width: 1048px;
-		        padding: 20px 40px;
-    			margin: 0 auto;
-    			.goods_prev{
-				    width: 17px;
-				    height: 350px;
-				    position: absolute;
-				    left:0;
-				    z-index: 3;
+				    margin:4px 20px 10px 0;
+				    max-width: 341px;
+				    white-space: nowrap;
+				    overflow: hidden;
+				    text-overflow: ellipsis;
+			    }
+			    .price_l{
+			    	display: block;
+			    	width:60px;
+			    	margin-bottom:10px;
+			    }
+			    .price_b{
+		    	    font-size: 18px;
+   					font-weight: bold;
+			    }
+			    .details_l{
+			    	width:60px;
+			    	display: block;
+			    	margin-bottom:10px;
+			    }
+			  	.allSize{
+			    	height:28px;
+			    	line-height: 28px;
+			    	width:60px;
+			    }
+			    .size_num .size{
 				    background: #fff;
+				    width: 42px;
+				    height: 28px;
+				    line-height: 28px;
+				    text-align:center;
+				    padding: 0 5px;
+				    margin-right:5px;
+				    border: solid 1px #333;
+				    color: #333;
+				    border-radius: 2px;
 				    cursor: pointer;
-				    p{
-			    	    width: 17px;
-					    position: absolute;
-					    height: 38px;
-					    top: 100px;
-					    background: url(../img/pre_btn.png) no-repeat;
+			    }
+			    .size_num .active{
+			    	background: #000;
+			    	color:#fff;
+			    }
+			    p{
+			    	padding-left:60px;
+			    	margin:10px 0 20px 0;
+			    }
+			    .details_buy{
+			    	.buy_now{
+		    		    background: #333;
+						width: 152px;
+						height: 45px;
+					    font-size: 14px;
+					    cursor: pointer;
+					    border-radius: 2px;
+					    text-align:center;
+					    a{color:#fff;line-height: 45px;}
+			    	}
+			    	.atc{
+		    		    background: #c53f40;
+						margin-left: 10px;
+						width: 143px;
+						height: 45px;
+					    font-size: 14px;
+					    cursor: pointer;
+					    border-radius: 2px;
+					    text-align:center;
+					    a{color:#fff;line-height: 45px;}
+			    	}
+				    .details_share{
+				    	.collect{
+				    	    border: solid 1px #e8e8e8;
+						    margin-left: 10px;
+				    		display: inline-block;
+				    	    width: 43px;
+						    height: 43px;
+						    background: url(../img/pst.gif) no-repeat;
+					        background-position: 0 -13px;
+				    	}
+				    	.share{
+			    		    border: solid 1px #e8e8e8;
+						    float: left;
+						    width: 43px;
+						    height: 43px;
+						    margin-left: 20px;
+						    background: url(../img/pst.gif) 0 -56px no-repeat;
+						    position: relative;
+				    	}
 				    }
-    			}
-    			.goods_next{
-					width: 17px;
-				    height: 350px;
-				    position: absolute;
-				    right:0;
-				    z-index: 3;
-				    background: #fff;
-				    cursor: pointer;
-				    p{
-			    	    width: 17px;
-					    position: absolute;
-					    height: 38px;
-					    top: 100px;
-				        background: url(../img/next_btn.png) no-repeat;
-				    }
-    			}
-    			.like_list{
-    				width:100%;
-    				position:relative;
-    				ul{
-    					overflow: hidden;
-    					position:relative;
-    					width:6600px;
-    					li{
-						    width: 220px;
-  							height: 350px;
-  							margin: 0 24px;
-  							text-align: center;
-  							.pic{
-							    display: block;
-							    // width: 207px;
-							    // height: 200px;
-							    text-align: center;
-							    padding-top: 10px;
-							    text-align:center;
-							    img{
-									display:block;
-									width:180px;
-									height:180px;
-								}
-							}
-							.global{
-							    width: 48px;
-							    height: 24px;
-							    margin-right: 10px;
-							    text-align: left;
-								padding: 10px 20px ;
-								.g_buy{
-									width: 48px;
-							   		height: 24px;
-		   							background: url(../img/saleTip1.png) -1px -3px no-repeat;
-								}
-							}	
-							.goodsname{
-								a{
-									display: block;
-									height: 45px;
-									padding: 0 20px 9px 20px;
-									line-height: 2;
-									text-align: left;
-									overflow: hidden;
-									white-space: nowrap;
-									-o-text-overflow: ellipsis;
-									text-overflow: ellipsis; 
-									text-decoration:none;
-									color:#666;
-									i{
-										font-style:normal;
-									}
-									span{
-										font-weight: bold;
-										color:#000;
-									}
-								}
-							}
-							.price{
-							    height: 18px;
-					    		line-height: 18px;
-					   			padding: 1px 0;
-					      	    height: 26px;
-					    		padding: 0 20px;
-					    		text-align:left;
-					    		color:#666;
-							}
-							.bigCar{
-								width: 126px;
-							    height: 33px;
-							    line-height: 33px;
-							    border: solid 1px #e8e8e8;
-							    margin-left: 20px;
-							    cursor: pointer;
-							}
-    					}
+			    }
+			    .arrive{
+		    	    padding: 15px 0;
+		    	    height:20px;
+		    	    margin-top:10px;
+    				border-bottom: solid 1px #f5f5f5;
+    				.arrive_time{
+					    width: 78px;
+					    float: left;
+					    display: block;
     				}
-    			}
-   			}
+    				span{
+    					display: block;
+    					width: 345px;
+					    float: right;
+					    display: block;
+    				}
+			    }
+			}
 		}
-	}	
+	}
+	
 }
 
 /* 底部样式 */

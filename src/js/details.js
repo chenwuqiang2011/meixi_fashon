@@ -2,7 +2,210 @@
 	首页js文件
  */
 require(['config'],function(){
-	require(['jquery','common'],function($,com){
+	require(['jquery','common','gdszoom'],function($,com){
+
+		// 获取商品数据，并写入页面
+		var id = location.search.substring(1);
+		console.log(id)
+		$.ajax({
+			url:"../api/goodslist.php",
+			dataType:"json",
+			data:{id:id},
+			success:function(res){
+
+				//遍历尺码；
+				var html = res.size.map(function(item,idx){
+					return `
+						<div id=${idx} class="size fl">${item}</div>
+					`
+				}).join("");
+
+				//截取价格；
+				var price = res.price.match(/\d+\.\d+$/);
+
+				//写到页面；
+				$("<div/>").addClass("allDetails").html(`
+					<div class="details_fl fl clearfix">
+						<div class="small_img"></div>
+						<div class="nor_img">
+							<img src="${res.imgurl}" data-big="${res.imgurl}" />
+						</div>
+					</div>
+					<div class="details_fr fl">
+						<h1><a href="#"/>${res.brand}</a></h1>
+						<div class="details_name">${res.name}</div>
+						<div class="details_price clearfix"><span class="price_l fl">美西价&nbsp;&nbsp;&nbsp&nbsp;</span><span class="details_l price_b fl">￥${price}</span></div>
+						<div class="details_color clearfix"><span class="price_l fl">颜色&nbsp;&nbsp;&nbsp</span><span class="details_l fl">${res.color}</span></div>
+						<div class="details_size clearfix">
+							<div class="allSize fl">尺码</div>
+							<div class="size_num fl clearfix">${html}</div>
+						</div>
+						<p><a href="#">查看尺码要求</a></p>
+						<div class="details_buy clearfix">
+							<div class="buy_now fl"><a href="#">即刻购买</a></div>
+							<div class="atc fl"><a href="#">加入购物车</a></div>
+							<div class="details_share fr clearfix">
+								<a href="#" class="collect "></a>
+								<div class="share"></div>
+							</div>
+						</div>
+						<div class="arrive">
+							<span class="arrive_time">到货时间</span><span>该商品到货时间预计5-10个工作日<span>
+						</div>
+					</div>
+				`).appendTo($(".details"));
+
+				// 放大镜引用；获宽高；
+				$width = $('.nor_img img').width();
+				$height = $('.nor_img img').height();
+
+				$('.nor_img').gdsZoom({width:$width,height:$height,gap:20});
+
+				//默认选中第一个尺码；
+				$(".size").first().addClass("active");
+
+				//点出切换；
+				$(".size_num").on("click",".size",function(){
+					$(this).addClass("active").siblings(".size").removeClass("active");
+				});
+
+				
+
+				// //点击添加到购物袋；
+				// $(".details_buy").on("click",".atc",function(){
+
+				// 	// 先获取cookie中的值
+				// 	var goodslist = com.getCookie('goodslist');
+
+				// 	// 如果没有cookie，则赋值空数组
+				// 	// 有cookie就转换成对象
+				// 	if(goodslist.length>0){
+				// 		goodslist = JSON.parse(goodslist);
+				// 	}else{
+				// 		goodslist = [];
+				// 	};
+				
+				// 	// 同一个商品，只添加数量
+
+				// 	// 遍历goodslist，查看是否存在相同商品
+				// 	// [{guid:'xx',qty:10}],[]
+				// 	var goodsdata = goodslist.filter(function(item){
+				// 		return item.guid === id;
+				// 	});
+
+				// 	// 如果已存在，则数量+1
+				// 	if(goodsdata.length>0){
+				// 		goodsdata[0].qty++;
+				// 	}else{
+				// 		res.qty=1;
+				// 		// 往商品列表中添加当前商品信息
+				// 		goodslist.push(res);
+				// 	}
+				// 	//写入cookie;
+				// 	com.setCookie('goodslist',JSON.stringify(goodslist));
+
+				// 	//同时将数据写入购物袋；
+
+				// 	//先清空购物车；
+				// 	$(".goods_buy").html("");	
+				// 	$ul = $("<ul/>");
+				// 	var total = 0;
+					
+				// 	var $html = goodslist.map(function(item){
+						
+
+				// 		//计算总价；				
+				// 		total += item.qty * item.price.match(/\d+\.\d+$/);
+
+				// 		return `
+				// 				<li class="single_goods clearfix" id=${item.guid}>
+				// 					<div class="goods_url fl">
+				// 						<a href="#"><img src="${item.imgurl}" alt="" /></a>
+				// 					</div>
+				// 					<div class="goods_details fr">
+				// 						<p class="goods_brand">${item.brand}</p>
+				// 						<p class="goods_name">${item.name}</p>
+				// 						<p class="goods_price">
+				// 							<span>${item.price}</span>&nbsp;&nbsp;&nbsp;&times;
+				// 							<span class="goods_qty">${item.qty}</span>
+				// 						</p>
+				// 					</div>
+				// 					<div class="goods_delete">╳</div>
+				// 				</li>
+				// 		`
+				// 	});
+
+				// 	$(".goods_buy").html($ul.html($html));
+				// 	//显示购物车商品数量；
+				// 	$(".goodsnum").html(goodslist.length);
+
+				// 	//显示总价
+				// 	$(".total_price span").html(total.toFixed(2))
+
+				// 	//判断显示总价；
+				// 	if(goodslist.length == 0){
+				// 		$(".total_price").hide();
+				// 		$(".goods_emty").show();
+						
+				// 	}else{
+				// 		$(".total_price").show();
+				// 		$(".goods_emty").hide();
+				// 	}
+				// });
+
+				// //点出删除商品及cookie;
+				// $(".goods_buy").on("click",".goods_delete",function(){
+
+				// 	var currentId = $(this).parent().attr("id");
+					
+				// 	//删除当前商品；
+				// 	$(this).parent().remove();
+
+				// 	// 重新获取cookie中的值
+				// 	var goodslist = com.getCookie('goodslist');
+
+				// 	//转为json;
+				// 	goodslist = JSON.parse(goodslist);
+
+				// 	//遍历商品；
+				// 	goodslist.map(function(item,idx){
+
+				// 		//找出点击删除的商品；
+				// 		if(item.guid === currentId){
+
+				// 			//删除商品；
+				// 			goodslist.splice(idx,1);
+				// 			console.log(currentId);
+
+				// 			//显示购物车商品数量；
+				// 			$(".goodsnum").html(goodslist.length);
+
+				// 			//判断当前cookie没有商品时，隐藏去结算；
+				// 			if(goodslist.length == 0){
+				// 				$(".total_price").hide();
+				// 				$(".goods_emty").show();
+								
+				// 			}else{
+				// 				$(".total_price").show();
+				// 				$(".goods_emty").hide();
+				// 			}
+							
+				// 			// 重新写入cookie
+				// 			com.setCookie('goodslist',JSON.stringify(goodslist));
+
+				// 			// 更新价格		
+				// 			var _total = $(".total_price span").html();	
+				// 			_total -= item.qty * item.price.match(/\d+\.\d+$/);
+							
+				// 			$(".total_price span").html(_total);	
+				// 		};
+
+
+				// 	});
+				// });
+
+			}
+		});
 
 		//发送ajax请求生成导航列表；
 
@@ -62,7 +265,7 @@ require(['config'],function(){
 			},300);
 		});
 
-		//点击加入购物车；
+		/*//点击加入购物车；
 		// 先获取cookie中的值
 		var goodslist = com.getCookie('goodslist');
 
@@ -212,7 +415,7 @@ require(['config'],function(){
 
 
 			});
-		});
+		});*/
 
 		//导航移入移出；
 	
@@ -248,233 +451,6 @@ require(['config'],function(){
 			console.log(5555)
 			e.preventDefault();
 		})
-
-		//发送ajax请求生成商品
-		var pageNo = 1;
-		// var lastPage = 1;
-		$.ajax({
-			url:"../api/goodslist.php",
-			dataType:"json",
-			data:{pageNo:pageNo,qty:8},
-			success:function(res){
-				console.log(res);
-
-				//生成分页
-
-				var pageLen = Math.ceil(res.total/res.qty);
-				console.log(pageLen)
-				$(".page").html("");
-				$(".page").map(function(){
-					for(var i = 1;i <= pageLen;i++){
-						$span = $("<span/>");
-						if(i===pageNo){
-							$span.addClass("page_active");
-						}
-						$span.html(i).appendTo($(this));
-
-					};
-					
-				})
-			
-				var $ul = $('<ul/>').addClass("clearfix");
-				res.data.map(function(item,idx){
-					try{
-						$("<li/>").addClass("goods").html(`
-							<div class="details" id=${item.id}>
-								<div class="pic">
-									<a href="#"><img src="${item.imgurl}" alt="" /></a>
-								</div>
-								<div class="global">
-									<div class="${item.true}"></div>
-								</div>
-								<div class="goodsname">
-									<a href="#">
-										<span>${item.brand}</span><br/>
-										<i>${item.name}</i>
-									</a>
-								</div>
-								<div class="price">
-									<p>${item.price}</p>
-								</div>
-								<div class="goodsCar">
-									<div class="bigCar">加入购物袋</div>
-								</div>
-							</div>
-						`).appendTo($ul);
-					}catch(err){
-						console.log(666)
-					}			
-				});
-				$ul.appendTo($(".goodslist"));
-				pageNo++;
-
-				//商品列表点击显示隐藏；
-				// $(".list").on("click",".listItem",function(){
-				// 	//当前li显示隐藏；
-				// 	$(this).next(".listItem_b").toggle();
-
-				// 	//+,-号切换
-				// 	if($(this).next(".listItem_b").css("display") == "none"){
-				// 		$(this).find(".lt_state").html("+");
-
-				// 	}else if($(this).next(".listItem_b").css("display") == "block"){
-				// 		$(this).find(".lt_state").html("-")
-				// 	}
-
-				// });
-			}
-		});
-
-		//点击分页显示；
-
-		$(".page").on("click","span",function(){
-			pageNo = $(this).html();
-			$(this).index();
-
-			//遍历上下显示相同页码；
-			$(".page").map((idx,item)=>{
-				$(item).find("span").eq($(this).index()).addClass("page_active").siblings("span").removeClass("page_active");
-			})
-
-			//点击发送ajax请求
-			$.ajax({
-				url:"../api/goodslist.php",
-				dataType:"json",
-				data:{pageNo:pageNo,qty:8},
-				success:function(res){
-					// console.log(res);
-					//清空ul的内容；
-					$(".goodslist ul").html("");
-					res.data.map(function(item){
-						try{
-							$("<li/>").addClass("goods").html(`
-							<div class="details">
-								<div class="pic">
-									<a href="#"><img src="${item.imgurl}" alt="" /></a>
-								</div>
-								<div class="global">
-									<div class="${item.true}"></div>
-								</div>
-								<div class="goodsname">
-									<a href="#">
-										<span>${item.brand}</span><br/>
-										${item.name}
-									</a>
-								</div>
-								<div class="price">
-									<p>${item.price}</p>
-								</div>
-								<div class="goodsCar">
-									<div class="bigCar">加入购物袋</div>
-								</div>
-							</div>
-						`).appendTo($(".goodslist ul"));
-						}catch(err){
-							console.log(666)
-						}			
-					});
-					//商品列表点击显示隐藏；
-					// $(".list").on("click",".listItem",function(){
-					// 	//当前li显示隐藏；
-					// 	$(this).next(".listItem_b").toggle();
-
-					// 	//+,-号切换
-					// 	if($(this).next(".listItem_b").css("display") == "none"){
-					// 		$(this).find(".lt_state").html("+");
-
-					// 	}else if($(this).next(".listItem_b").css("display") == "block"){
-					// 		$(this).find(".lt_state").html("-")
-					// 	}
-
-					// });
-				}
-			});
-			
-		});
-
-		//点出商品图片，跳转到商品详情页；
-		$(".goodslist").on("click","img",function(){
-			console.log(999)
-			var id = $(this).parents(".details").attr("id");
-
-			//把当前商品id传到详情页；
-			location.href = "details.html?"+ id;
-		})
-			
-		//滚动时，列表到达顶部时定位；
-		var height = $(".content_left").offset().top;
-		$(window).on("scroll",function(){
-			//滚动条高度；
-			var scrollTop = $(window).scrollTop();
-			// console.log((height-scrollTop));
-
-			//下面页码的偏移高度；
-		
-			var _top = $(".page").eq(1).offset().top;
-			var _owid = $(".content_left").outerHeight();
-
-			var _result = _top - scrollTop;
-			console.log(_result,_owid)
-
-			if(scrollTop >= height ){
-				$(".content_left").addClass("content_fixed");
-			}else{
-				$(".content_left").removeClass("content_fixed");
-
-			};
-
-			//滚动到下面页码时，跟随页面滚动；
-			if(_owid >= _result){
-				$(".content_left").css({top:-(_owid - _result)});
-			}
-		})
-
-/*		// 滚动更多，懒加载；
-		$(window).on('scroll',function(){
-			var scrollTop = $(window).scrollTop();
-			var winHeight = $(window).height();
-			var scrollHeight = $('html').outerHeight();
-
-			// 如何判断滚动到最底部
-			if(scrollTop >= scrollHeight - winHeight - 600){
-				if(pageNo == lastPage) return;
-					$.ajax({
-						url:"../api/goodslist.php",
-						dataType:"json",
-						data:{pageNo:pageNo,qty:8},
-						success:function(res){
-							console.log(res);
-							res.data.map(function(item){
-								try{
-									$("<li/>").addClass("goods").html(`
-										<div class="details">
-											<div class="pic">
-												<a href="#"><img src="${item.imgurl}" alt="" /></a>
-											</div>
-											<div class="global ${item.true}"></div>
-											<div class="goodsname">
-												<a href="#">
-													<span>${item.brand}</span><br/>
-													${item.name}
-												</a>
-											</div>
-											<div class="price">
-												<p>${item.price}</p>
-											</div>
-										</div>
-									`).appendTo($(".goodslist").find($("ul")));
-								}catch(err){
-									console.log(666)
-								}			
-							});
-							pageNo++;
-						}
-					});
-
-				// 更新lastPage
-				lastPage = pageNo;
-			}
-		});*/
 
 	});
 });

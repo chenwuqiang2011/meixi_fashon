@@ -12,6 +12,8 @@
 	// 每页显示数
 	$qty = isset($_GET['qty']) ? $_GET['qty'] : 10;
 
+	// 商品id;
+	$id = isset($_GET['id']) ? $_GET['id'] : "";
 
 	$file_url = './goods.json';
 
@@ -43,25 +45,23 @@
 		'total'=>count($res)
 	);
 
+	
 	//输出json字符串；
-	echo json_encode($data,JSON_UNESCAPED_UNICODE);
+	if($id){
+
+		//遍历商品，找到相同id的商品；
+		foreach ($res as $currentGoods){
+			if($currentGoods ->id == $id ){
+				echo json_encode($currentGoods,JSON_UNESCAPED_UNICODE);
+				break;
+			}
+		}
+	}else{
+
+		//分页输出；
+		echo json_encode($data,JSON_UNESCAPED_UNICODE);
+	}
 
 	fclose($myfile);
 
-	/*// 根据分页截取数据
-	// 1:array($arr,0,10)
-	// 2:array($arr,10,10)
-	// 3:array($arr,20,10)
-	// 公式：($pageNo-1)*$qty,$qty
-	$res = array(
-		'data'=>array_slice($arr_data, ($page_no-1)*$qty,$qty),
-		'qty'=>$qty,
-		'total'=>count($arr_data)
-	);
-
-	// 输出json字符串
-	// {"data":[],"total":29}
-	echo json_encode($res,JSON_UNESCAPED_UNICODE);
-
-	fclose($myfile);*/
 ?>

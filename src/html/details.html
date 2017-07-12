@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>购物车列表页</title>
-	<link rel="stylesheet" href="../css/car.css">
-	<!-- 轮播图样式 -->
-	<link rel="stylesheet" href="../lib/jquery.lxCarousel/jquery.lxCarousel.css">
-	<script src="../js/require.js" data-main="../js/car"></script>
+	<title>商品详情页</title>
+	<link rel="stylesheet" href="../css/details.css">
+	<link rel="stylesheet" href="../lib/jquery-gdsZoom/jquery.gdsZoom.css">
+	<script src="../js/require.js" data-main="../js/details"></script>
+	<script src="../lib/jquery3.1.1.js"></script>
+	<script src="../lib/jquery-gdsZoom/jquery.gdsZoom.js"></script>
 
 </head>
 <body>
@@ -86,7 +87,7 @@
         <!--导航条边框背影-->
 
 	</header>
-	<!-- 内容区 -->
+
 	<!-- 咨询显示 -->
 	<div class="consult">
 		<ul>
@@ -112,75 +113,14 @@
 			</li>
 		</ul>
 	</div>
+	<!-- 内容区 -->
 	<div class="containerbg">
-	        <div class="headerShadow"></div>
-	        <!-- 购物车内容 -->
-	        <div class="container">
-				<div class="car_title">
-		        	<div class="title_01 fl">
-		        		<label class="allpro" for="allCheck">
-		        			<input id="allCheck" type="checkbox" class="allCheck" checked />全选
-	        			</label>
-	        		</div>
-		            <div class="title_02 fl">商品信息</div>
-		            <div class="title_03 fl">单价</div>
-		            <div class="title_04 fl">数量</div>
-		            <div class="title_05 fl">小计</div>
-		        </div>
-		        <!-- 商品列表 -->
-		        <div class="carList">
-		        	<div class="goodsList"></div>
-		        </div>
-				<div class="car_bar">
-					<div class="car_delete clearfix">
-						<div class="car_delete_l fl clearfix">
-							<div class="allDelete fl">
-								<label class="allpro" for="allDelete"><input id="allDelete" type="checkbox" class="allCheck" checked />全选</label>
-							</div>
-							<div class="allDelete_msg fl">
-		                        <a href="#">删除选中的商品</a>
-		                        <a href="#">加入收藏</a>
-							</div>
-						</div>
-						<div class="car_delete_r fr">
-							<div class="goods_chose">
-								<p class="goods_num">
-									已选商品&nbsp; <span class="total_num">1</span>&nbsp; 件&nbsp;&nbsp;&nbsp;&nbsp;合计（不含运费、税费）:￥&nbsp;
-									<span class="total_price"></span>
-								</p>
-								<p class="goods_discount">活动折扣：-￥&nbsp;0.00
-									<span class="discount"></span>
-								</p>
+        <div class="headerShadow"></div>
+        <div class="container">
+			<div class="details clearfix">
 
-							</div>
-						</div>
-					</div>
-					<div class="continue_buy clearfix">
-
-		            	<a class="go_on_buy fl" href="#" target="_blank">继续购物</a>
-		            	<button class="buying fr" ">立即结算</button>
-
-					</div>
-				</div>
-				<div class="like">
-					<div class="your_fav">猜你喜欢</div>
-					<div class="goods_like">
-						<div class="goods_container">
-							<div class="goods_prev">
-								<p></p>
-							</div>
-							<div class="goods_next">
-								<p></p>
-							</div>
-							<div class="like_list">
-								
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
-		</div>
-		
+		</div>	
 	</div>
 	
 	<!--底部footer-->

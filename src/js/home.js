@@ -97,5 +97,11 @@ require(['config'],function(){
 			$(".subnav_list").hide();
 		});
 
+		//购物车点击结算跳转到购物车页面；
+		$(".account").click(e=>{
+			location.href = "html/car.html";
+			e.preventDefault();
+		})
+
 	});
 });
