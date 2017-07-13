@@ -6,15 +6,21 @@ require(['config'],function(){
 
 		// 获取商品数据，并写入页面
 		var id = location.search.substring(1);
-		console.log(id)
+		console.log(id);
 		$.ajax({
-			url:"../api/goodslist.php",
+			url:"../api/goods.php",
 			dataType:"json",
 			data:{id:id},
-			success:function(res){
+			success:function(res){console.log(res);
+
+				var str = res.size.slice(1,-1);
+				var _str =str.replace(/"/gi,"");
+				var arr = _str.split(",");
+				
+				console.log(arr,res.size);
 
 				//遍历尺码；
-				var html = res.size.map(function(item,idx){
+				var html = arr.map(function(item,idx){
 					return `
 						<div id=${idx} class="size fl">${item}</div>
 					`
@@ -69,143 +75,173 @@ require(['config'],function(){
 					$(this).addClass("active").siblings(".size").removeClass("active");
 				});
 
-				
 
-				// //点击添加到购物袋；
-				// $(".details_buy").on("click",".atc",function(){
 
-				// 	// 先获取cookie中的值
-				// 	var goodslist = com.getCookie('goodslist');
+				//点击加入购物车；
+				// 先获取cookie中的值
+				var goodslist = com.getCookie('goodslist');
 
-				// 	// 如果没有cookie，则赋值空数组
-				// 	// 有cookie就转换成对象
-				// 	if(goodslist.length>0){
-				// 		goodslist = JSON.parse(goodslist);
-				// 	}else{
-				// 		goodslist = [];
-				// 	};
-				
-				// 	// 同一个商品，只添加数量
+				// 如果没有cookie，则赋值空数组
+				// 有cookie就转换成对象
+				if(goodslist.length>0){
+					goodslist = JSON.parse(goodslist);
+				}else{
+					goodslist = [];
+				};
 
-				// 	// 遍历goodslist，查看是否存在相同商品
-				// 	// [{guid:'xx',qty:10}],[]
-				// 	var goodsdata = goodslist.filter(function(item){
-				// 		return item.guid === id;
-				// 	});
+				//刷新页面自动加载购物车信息
+				showGoods(goodslist);
+				function showGoods(goodslist){
 
-				// 	// 如果已存在，则数量+1
-				// 	if(goodsdata.length>0){
-				// 		goodsdata[0].qty++;
-				// 	}else{
-				// 		res.qty=1;
-				// 		// 往商品列表中添加当前商品信息
-				// 		goodslist.push(res);
-				// 	}
-				// 	//写入cookie;
-				// 	com.setCookie('goodslist',JSON.stringify(goodslist));
-
-				// 	//同时将数据写入购物袋；
-
-				// 	//先清空购物车；
-				// 	$(".goods_buy").html("");	
-				// 	$ul = $("<ul/>");
-				// 	var total = 0;
+					//先清空购物车；
+					$(".goods_buy").html("");	
+					$ul = $("<ul/>");
+					var total = 0;
 					
-				// 	var $html = goodslist.map(function(item){
+					var $html = goodslist.map(function(item){
+
+						//计算总价；				
+						total += item.qty * item.price.match(/\d+\.\d+$/);
+
+						return `
+								<li class="single_goods clearfix" id=${item.id}>
+									<div class="goods_url fl">
+										<a href="#"><img src="${item.imgurl}" alt="" /></a>
+									</div>
+									<div class="goods_details fr">
+										<p class="goods_brand">${item.brand}</p>
+										<p class="goods_name">${item.name}</p>
+										<p class="goods_price">
+											<span>${item.price}</span>&nbsp;&nbsp;&nbsp;&times;
+											<span class="goods_qty">${item.qty}</span>
+										</p>
+									</div>
+									<div class="goods_delete">╳</div>
+								</li>
+						`
+					});
+
+					$(".goods_buy").html($ul.html($html));
+
+					//显示购物车商品数量；
+					$(".goodsnum").html(goodslist.length);
+
+					//显示总价
+					$(".total_price span").html(total.toFixed(2))
+
+					//判断显示总价；
+					if(goodslist.length == 0){
+						$(".total_price").hide();
+						$(".goods_emty").show();
 						
-
-				// 		//计算总价；				
-				// 		total += item.qty * item.price.match(/\d+\.\d+$/);
-
-				// 		return `
-				// 				<li class="single_goods clearfix" id=${item.guid}>
-				// 					<div class="goods_url fl">
-				// 						<a href="#"><img src="${item.imgurl}" alt="" /></a>
-				// 					</div>
-				// 					<div class="goods_details fr">
-				// 						<p class="goods_brand">${item.brand}</p>
-				// 						<p class="goods_name">${item.name}</p>
-				// 						<p class="goods_price">
-				// 							<span>${item.price}</span>&nbsp;&nbsp;&nbsp;&times;
-				// 							<span class="goods_qty">${item.qty}</span>
-				// 						</p>
-				// 					</div>
-				// 					<div class="goods_delete">╳</div>
-				// 				</li>
-				// 		`
-				// 	});
-
-				// 	$(".goods_buy").html($ul.html($html));
-				// 	//显示购物车商品数量；
-				// 	$(".goodsnum").html(goodslist.length);
-
-				// 	//显示总价
-				// 	$(".total_price span").html(total.toFixed(2))
-
-				// 	//判断显示总价；
-				// 	if(goodslist.length == 0){
-				// 		$(".total_price").hide();
-				// 		$(".goods_emty").show();
-						
-				// 	}else{
-				// 		$(".total_price").show();
-				// 		$(".goods_emty").hide();
-				// 	}
-				// });
-
-				// //点出删除商品及cookie;
-				// $(".goods_buy").on("click",".goods_delete",function(){
-
-				// 	var currentId = $(this).parent().attr("id");
+					}else{
+						$(".total_price").show();
+						$(".goods_emty").hide();
+					}
 					
-				// 	//删除当前商品；
-				// 	$(this).parent().remove();
+				}
 
-				// 	// 重新获取cookie中的值
-				// 	var goodslist = com.getCookie('goodslist');
+				//点击添加到购物袋；
+				$(".details_buy").on("click",".atc",function(){
 
-				// 	//转为json;
-				// 	goodslist = JSON.parse(goodslist);
+					// 先获取cookie中的值
+					var goodslist = com.getCookie('goodslist');
 
-				// 	//遍历商品；
-				// 	goodslist.map(function(item,idx){
+					// // 如果没有cookie，则赋值空数组
+					// // 有cookie就转换成对象
+					if(goodslist.length>0){
+						goodslist = JSON.parse(goodslist);
+					}else{
+						goodslist = [];
+					};
+					// 先获取当前li
+					// 同一个商品，只添加数量
+					
+					var currentGUID = id;
 
-				// 		//找出点击删除的商品；
-				// 		if(item.guid === currentId){
+					// 遍历goodslist，查看是否存在相同商品
+					// [{guid:'xx',qty:10}],[]
+					var data = goodslist.filter(function(item){
+						return item.id === currentGUID;
+					});
 
-				// 			//删除商品；
-				// 			goodslist.splice(idx,1);
-				// 			console.log(currentId);
+					// 如果已存在，则当前商品添加数量属性且值为1；
+					if(data.length>0){
+						data[0].qty++;
+					}else{		
+						res.qty=1;
+						// 往商品列表中添加当前商品信息
+						goodslist.push(res);
+					}
 
-				// 			//显示购物车商品数量；
-				// 			$(".goodsnum").html(goodslist.length);
+					//写入cookie;
+					com.setCookie('goodslist',JSON.stringify(goodslist));
 
-				// 			//判断当前cookie没有商品时，隐藏去结算；
-				// 			if(goodslist.length == 0){
-				// 				$(".total_price").hide();
-				// 				$(".goods_emty").show();
+					//同时将数据写入购物袋；
+					showGoods(goodslist);
+
+				});
+
+				//点出删除商品及cookie;
+				$(".goods_buy").on("click",".goods_delete",function(){
+					
+					//删除当前商品；
+					$(this).parent().hide().remove();
+
+					// 重新获取cookie中的值
+					var goodslist = com.getCookie('goodslist');
+
+					//转为json;
+					goodslist = JSON.parse(goodslist);
+
+					//遍历商品；
+					goodslist.map(function(item,idx){
+
+						//找出点击删除的商品；
+						if(item.id === id){
+							
+
+							//删除商品；
+							goodslist.splice(idx,1);
+							console.log(goodslist);
+
+							//显示购物车商品数量；
+							$(".goodsnum").html(goodslist.length);
+
+							//判断当前cookie没有商品时，隐藏去结算；
+							if(goodslist.length == 0){
+								$(".total_price").hide();
+								$(".goods_emty").show();
 								
-				// 			}else{
-				// 				$(".total_price").show();
-				// 				$(".goods_emty").hide();
-				// 			}
+							}else{
+								$(".total_price").show();
+								$(".goods_emty").hide();
+							}
 							
-				// 			// 重新写入cookie
-				// 			com.setCookie('goodslist',JSON.stringify(goodslist));
+							// 重新写入cookie
+							com.setCookie('goodslist',JSON.stringify(goodslist));
 
-				// 			// 更新价格		
-				// 			var _total = $(".total_price span").html();	
-				// 			_total -= item.qty * item.price.match(/\d+\.\d+$/);
+							// 更新价格		
+							var _total = $(".total_price span").html();	
+							_total -= item.qty * item.price.match(/\d+\.\d+$/);
 							
-				// 			$(".total_price span").html(_total);	
-				// 		};
+							$(".total_price span").html(_total);	
+						};
 
 
-				// 	});
-				// });
+					});
+				});	
 
+					//购物车点击即刻购买跳转到购物车页面；
+				$(".buy_now").click(e=>{
+					location.href = "./login.html";
+					
+					e.preventDefault();
+				});		
 			}
+			
 		});
+
 
 		//发送ajax请求生成导航列表；
 
@@ -256,7 +292,6 @@ require(['config'],function(){
 		var timer;
 		$(".car").mouseenter(function(){
 			clearTimeout(timer);
-			console.log(7777777777)
 			$(".total_car").show();
 		});
 		$(".car").mouseleave(function(){
@@ -265,157 +300,10 @@ require(['config'],function(){
 			},300);
 		});
 
-		/*//点击加入购物车；
-		// 先获取cookie中的值
-		var goodslist = com.getCookie('goodslist');
-
-		// 如果没有cookie，则赋值空数组
-		// 有cookie就转换成对象
-		if(goodslist.length>0){
-			goodslist = JSON.parse(goodslist);
-		}else{
-			goodslist = [];
-		};
-
-		//刷新页面自动加载购物车信息
-		showGoods();
-		function showGoods(){
-
-			//先清空购物车；
-			$(".goods_buy").html("");	
-			$ul = $("<ul/>");
-			var total = 0;
-			
-			var $html = goodslist.map(function(item){
-
-				//计算总价；				
-				total += item.qty * item.price.match(/\d+\.\d+$/);
-
-				return `
-						<li class="single_goods clearfix" id=${item.guid}>
-							<div class="goods_url fl">
-								<a href="#"><img src="${item.imgurl}" alt="" /></a>
-							</div>
-							<div class="goods_details fr">
-								<p class="goods_brand">${item.brand}</p>
-								<p class="goods_name">${item.name}</p>
-								<p class="goods_price">
-									<span>${item.price}</span>&nbsp;&nbsp;&nbsp;&times;
-									<span class="goods_qty">${item.qty}</span>
-								</p>
-							</div>
-							<div class="goods_delete">╳</div>
-						</li>
-				`
-			});
-
-			$(".goods_buy").html($ul.html($html));
-			//显示购物车商品数量；
-			$(".goodsnum").html(goodslist.length);
-
-			//显示总价
-			$(".total_price span").html(total.toFixed(2))
-
-			//判断显示总价；
-			if(goodslist.length == 0){
-				$(".total_price").hide();
-				$(".goods_emty").show();
-				
-			}else{
-				$(".total_price").show();
-				$(".goods_emty").hide();
-			}
-			
-		}
-
-		//点击添加到购物袋；
-		$(".goodslist").on("click",".bigCar",function(){
-			// 先获取当前li
-			// 同一个商品，只添加数量
-			var $currentList = $(this).parent().parent();
-			var currentGUID = $currentList.attr("id");
-
-			// 遍历goodslist，查看是否存在相同商品
-			// [{guid:'xx',qty:10}],[]
-			var res = goodslist.filter(function(item){
-				return item.guid === currentGUID;
-			});
-
-			// 如果已存在，则数量+1
-			if(res.length>0){
-				res[0].qty++;
-			}else{
-				var item = {
-					guid:currentGUID,
-					imgurl:$currentList.children($(".pic")).find($("img")).attr("src"),
-					brand:$currentList.children($(".goodsname")).find($("span")).html(),
-					name:$currentList.children($(".goodsname")).find($("i")).html(),
-					price:$currentList.children($(".price")).find($("p")).html(),
-					qty:1
-				}
-
-				// 往商品列表中添加当前商品信息
-				goodslist.push(item);
-			}
-
-			//写入cookie;
-			com.setCookie('goodslist',JSON.stringify(goodslist));
-
-			//同时将数据写入购物袋；
-			showGoods(goodslist);
-
-		});
-
-		//点出删除商品及cookie;
-		$(".goods_buy").on("click",".goods_delete",function(){
-
-			var currentId = $(this).parent().attr("id");
-			
-			//删除当前商品；
-			$(this).parent().remove();
-
-			// 重新获取cookie中的值
-			var goodslist = com.getCookie('goodslist');
-
-			//转为json;
-			goodslist = JSON.parse(goodslist);
-
-			//遍历商品；
-			goodslist.map(function(item,idx){
-
-				//找出点击删除的商品；
-				if(item.guid === currentId){
-
-					//删除商品；
-					goodslist.splice(idx,1);
-					console.log(currentId);
-
-					//显示购物车商品数量；
-					$(".goodsnum").html(goodslist.length);
-
-					//判断当前cookie没有商品时，隐藏去结算；
-					if(goodslist.length == 0){
-						$(".total_price").hide();
-						$(".goods_emty").show();
-						
-					}else{
-						$(".total_price").show();
-						$(".goods_emty").hide();
-					}
-					
-					// 重新写入cookie
-					com.setCookie('goodslist',JSON.stringify(goodslist));
-
-					// 更新价格		
-					var _total = $(".total_price span").html();	
-					_total -= item.qty * item.price.match(/\d+\.\d+$/);
-					
-					$(".total_price span").html(_total);	
-				};
-
-
-			});
-		});*/
+		//商品详情点击切换；
+		$(".details_tab").on("click","li",function(){
+			$(this).addClass("tab_active").siblings("li").removeClass("tab_active");
+		})
 
 		//导航移入移出；
 	
@@ -448,9 +336,10 @@ require(['config'],function(){
 		//购物车点击结算跳转到购物车页面；
 		$(".account").click(e=>{
 			location.href = "./car.html";
-			console.log(5555)
 			e.preventDefault();
-		})
+		});
+
+	
 
 	});
 });

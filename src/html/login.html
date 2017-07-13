@@ -4,9 +4,14 @@
 	<meta charset="UTF-8">
 	<title>login</title>
 	<link rel="stylesheet" href="../css/login.css">
+	<link rel="stylesheet" href="../css/public.css">
 	<script src="../js/require.js" data-main="../js/login"></script>
+	<script src="../lib/jquery3.1.1.js"></script>
+	<script src="../js/public.js"></script>
 </head>
 <body>
+
+	<!-- 头部 -->
 	<div class="headerbg">
 		<div class="header clearfix">
 			<div class="logo fl">
@@ -22,6 +27,7 @@
 		</div>
 		<div class="shadow"></div>
 	</div>
+	<!-- 内容区 -->
 	<div class="content">
 		<div class="login">
 			<form action="" class="sign_in">
@@ -46,14 +52,17 @@
 						</label>
 						<span class="fr"><a href="#">忘记密码?</a></span>
 					</div>
+					<div class="tips"></div>
 
 					<div class="login_btn">
                 		<button type="button">登录</button>
                		</div>
-               		<p class="sign_up"><a href="#">立即注册</a></p>
+               		<p class="sign_up"><a href="./register.html">立即注册</a></p>
 				</div>
 			</form>
 		</div>
 	</div>
+	<!-- 底部 -->
+	<div id="footer"></div>
 </body>
 </html>

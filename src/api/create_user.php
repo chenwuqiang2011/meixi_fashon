@@ -26,38 +26,37 @@
 
 	// 接收前端传回的数据
 	$telphone = isset($_GET['telphone']) ? $_GET['telphone'] : '';
-	$password = isset($_GET['password']) ? $_GET['password'] : '123456';
+	$password = isset($_GET['password']) ? $_GET['password'] : '';
 
-	// md5加密密码
-	$password = md5($password);
+	
 
 	// 查找指定telphone信息
 	if($telphone){
 		
-
-		// 查找所有用户信息
-		$telphones = "select telphone from user where telphone='$telphone'";
+		// 查找所有用户名、密码；
+		$tel = "select telphone from user where telphone='$telphone'";
 
 		// 查询数据库
 
-		$result = $conn->query($telphones);
+		$result = $conn->query($tel);
 
 		//使用查询结果	
 		$row = $result->fetch_all(MYSQLI_ASSOC);
 
 		if($row){
+
+			//用户名存在时，提示用户更换用户名；
 			echo "false";
-		}else{
-			// 写入数据；
+			
+		};
+		if($password){
+			 // md5加密密码
+			$password = md5($password);
+			// 用户成功注册时写入数据；
 			$sql = "insert into user(telphone,password) values('$telphone','$password')";
-
 			// 查询数据库
-			$results = $conn->query($sql);
-
-			//使用查询结果	
-			if($results){
-				echo "true";
-			}
+			$conn->query($sql);
 		}
 	}
+	
 ?>

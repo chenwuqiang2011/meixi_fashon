@@ -5,6 +5,9 @@ define(function(){
 		random:function(){
 			return parseInt(Math.random()*100);
 		},
+		randomNum:function(min,max) {
+			return parseInt(Math.random()*(max-min+1)) + min;
+		},
 
 		setCookie:function (name,val,expires,path){
 			// cookie名/值（必填）

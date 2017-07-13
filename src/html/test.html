@@ -1,0 +1,21 @@
+<html>  
+<head> 
+<meta charset="utf-8"> 
+<title>只能输入正整数</title>  
+</head>  
+<body>  
+兑换数量：<input type="text" ID="txtNumber" Width="50px" onkeyup="
+if(this.value.length==1){
+	this.value=this.value.replace(/[^1-9]/g,'')
+	}else{
+		this.value=this.value.replace(/\D/g,'')
+		}" 
+	onafterpaste="if(this.value.length==1){
+		this.value=this.value.replace(/[^1-9]/g,'0')
+	}else{
+		this.value=this.value.replace(/\D/g,'')
+		}" />  
+<input type="button" ID="btn1" value=" 兑  换 " OnClick='return confirm("确定兑换？");' />  
+ <!-- <input type = "text" name= "number" id = 'number' onkeyup= "if(! /^d+$/.test(this.value) -->
+</body>  
+</html> 

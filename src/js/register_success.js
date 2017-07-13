@@ -13,7 +13,7 @@ require(['config'],function(){
 			name = temp[0];
 		})
 		var data = com.getCookie(name);
-console.log(data)
+console.log(9999,data);
 
 		$(".login span").html(data);
 		$(".login div").click(()=>{

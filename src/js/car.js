@@ -86,10 +86,9 @@ require(['config'],function(){
 
 				var $ul = $('<ul/>');
 				res.data.map(function(item,idx){
-				console.log(idx)
 					try{
 						$("<li/>").addClass("goods fl").html(`
-							<div class="details" id=goods${idx}>
+							<div class="details" id=${item.id}>
 								<div class="pic">
 									<a href="#"><img src="${item.imgurl}" alt="" /></a>
 								</div>
@@ -182,7 +181,7 @@ require(['config'],function(){
 				total_price += Number(total);
 
 				try{
-					$("<tr/>").attr("id",item.guid).html(`
+					$("<tr/>").attr("id",item.id).html(`
 						<td class="rel">
 							<input type="checkbox" class="goods_check" checked/>
 							<div class="car_goods_pic fl">
@@ -224,7 +223,7 @@ require(['config'],function(){
 			if(change == 1){
 
 				//更新总价格；
-				$(".total_price").html(total_price.toFixed(2));
+				$("#total_price").html(total_price.toFixed(2));
 
 			}else{
 				
@@ -235,7 +234,7 @@ require(['config'],function(){
 
 				//显示第个商品的数量
 				$(".total_num").html(total_num);
-				$(".total_price").html(total_price.toFixed(2));
+				$("#total_price").html(total_price.toFixed(2));
 			}
 		};
 
@@ -247,7 +246,7 @@ require(['config'],function(){
 
 			//遍历cookie，找到相同的商品；
 			var res = goodslist.filter(function(item){
-				return item.guid === currentId;
+				return item.id === currentId;
 			});
 
 			//删除商品标识；
@@ -255,7 +254,7 @@ require(['config'],function(){
 				goodslist.forEach(function(goods,idx){
 					// 判断cookie中是否存在当前商品
 					// 存在则删除
-					if(goods.guid === currentId){
+					if(goods.id === currentId){
 						goodslist.splice(idx,1);
 					}
 				});
@@ -358,6 +357,27 @@ require(['config'],function(){
 			
 			//调用函数改变价格；
 			showGoods(change);
+		})
+
+		//输入框失去焦点触发事件；
+		.on("input","input",function(e){
+			var val=$(this).val();
+			if(! /^[0-9]*[1-9][0-9]*$/.test(val)){
+				$(this).val(1);
+			}
+			console.log($(this).val())
+			//获取当前商品id;
+			var currentId = $(this).parents("tr").attr("id");
+
+			//获取当前数量；
+			var _num = Number($(this).val());
+
+			//调用写入cookie函数；
+			change(currentId,_num);
+
+			//阻止浏览器默认行为；
+			e.preventDefault();
+
 		});
 
 		//点击全选按钮；
@@ -423,7 +443,7 @@ require(['config'],function(){
 			// 遍历goodslist，查看是否存在相同商品
 			// [{guid:'xx',qty:10}],[]
 			var res = goodslist.filter(function(item){
-				return item.guid === currentGUID;
+				return item.id === currentGUID;
 			});
 
 			// 如果已存在，则数量+1
@@ -431,7 +451,7 @@ require(['config'],function(){
 				res[0].qty++;
 			}else{
 				var item = {
-					guid:currentGUID,
+					id:currentGUID,
 					imgurl:$currentList.children($(".pic")).find($("img")).attr("src"),
 					brand:$currentList.children($(".goodsname")).find($("span")).html(),
 					name:$currentList.children($(".goodsname")).find($("i")).html(),
@@ -496,7 +516,7 @@ require(['config'],function(){
 				total += item.qty * item.price.match(/\d+\.\d+$/);
 
 				return `
-						<li class="single_goods clearfix" id=${item.guid}>
+						<li class="single_goods clearfix" id=${item.id}>
 							<div class="goods_url fl">
 								<a href="#"><img src="${item.imgurl}" alt="" /></a>
 							</div>
@@ -518,7 +538,7 @@ require(['config'],function(){
 			$(".goodsnum").html(goodslist.length);
 
 			//显示总价
-			$(".total_price span").html(total.toFixed(2))
+			$(".total_price span").html(total.toFixed(2));
 
 			//判断显示总价；
 			if(goodslist.length == 0){
@@ -532,7 +552,7 @@ require(['config'],function(){
 			
 		}
 
-		//点出删除商品及cookie;
+		//点击删除商品及cookie;
 		$(".goods_buy").on("click",".goods_delete",function(){
 
 			var currentId = $(this).parent().attr("id");
@@ -550,7 +570,7 @@ require(['config'],function(){
 			goodslist.map(function(item,idx){
 
 				//找出点击删除的商品；
-				if(item.guid === currentId){
+				if(item.id === currentId){
 
 					//删除商品；
 					goodslist.splice(idx,1);
@@ -595,6 +615,24 @@ require(['config'],function(){
 			},300);
 		});
 
+
+		//点击推荐商品图片，跳转到商品详情页；
+		$(".like_list").on("click","img",function(e){
+			var id = $(this).parents(".details").attr("id");
+			location.href="./details.html?"+id;
+
+			//阻止浏览器默认行为；
+			e.preventDefault();
+		});
+
+		//点击购物车商品图片，跳转到商品详情页；
+		$(".tableList").on("click","img",function(e){
+			var id = $(this).parents("tr").attr("id");
+			location.href="./details.html?"+id;
+
+			//阻止浏览器默认行为；
+			e.preventDefault();
+		})
 
 
 	});

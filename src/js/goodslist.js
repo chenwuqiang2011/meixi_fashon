@@ -53,7 +53,7 @@ require(['config'],function(){
 		var timer;
 		$(".car").mouseenter(function(){
 			clearTimeout(timer);
-			console.log(7777777777)
+			
 			$(".total_car").show();
 		});
 		$(".car").mouseleave(function(){
@@ -75,8 +75,8 @@ require(['config'],function(){
 		};
 
 		//刷新页面自动加载购物车信息
-		showGoods();
-		function showGoods(){
+		showGoods(goodslist);
+		function showGoods(goodslist){
 
 			//先清空购物车；
 			$(".goods_buy").html("");	
@@ -89,7 +89,7 @@ require(['config'],function(){
 				total += item.qty * item.price.match(/\d+\.\d+$/);
 
 				return `
-						<li class="single_goods clearfix" id=${item.guid}>
+						<li class="single_goods clearfix" id=${item.id}>
 							<div class="goods_url fl">
 								<a href="#"><img src="${item.imgurl}" alt="" /></a>
 							</div>
@@ -107,6 +107,7 @@ require(['config'],function(){
 			});
 
 			$(".goods_buy").html($ul.html($html));
+
 			//显示购物车商品数量；
 			$(".goodsnum").html(goodslist.length);
 
@@ -127,6 +128,17 @@ require(['config'],function(){
 
 		//点击添加到购物袋；
 		$(".goodslist").on("click",".bigCar",function(){
+
+			// 先获取cookie中的值
+			var goodslist = com.getCookie('goodslist');
+
+			// // 如果没有cookie，则赋值空数组
+			// // 有cookie就转换成对象
+			if(goodslist.length>0){
+				goodslist = JSON.parse(goodslist);
+			}else{
+				goodslist = [];
+			};
 			// 先获取当前li
 			// 同一个商品，只添加数量
 			var $currentList = $(this).parent().parent();
@@ -135,7 +147,7 @@ require(['config'],function(){
 			// 遍历goodslist，查看是否存在相同商品
 			// [{guid:'xx',qty:10}],[]
 			var res = goodslist.filter(function(item){
-				return item.guid === currentGUID;
+				return item.id === currentGUID;
 			});
 
 			// 如果已存在，则数量+1
@@ -143,7 +155,7 @@ require(['config'],function(){
 				res[0].qty++;
 			}else{
 				var item = {
-					guid:currentGUID,
+					id:currentGUID,
 					imgurl:$currentList.children($(".pic")).find($("img")).attr("src"),
 					brand:$currentList.children($(".goodsname")).find($("span")).html(),
 					name:$currentList.children($(".goodsname")).find($("i")).html(),
@@ -169,7 +181,7 @@ require(['config'],function(){
 			var currentId = $(this).parent().attr("id");
 			
 			//删除当前商品；
-			$(this).parent().remove();
+			$(this).parent().hide().remove();
 
 			// 重新获取cookie中的值
 			var goodslist = com.getCookie('goodslist');
@@ -180,12 +192,13 @@ require(['config'],function(){
 			//遍历商品；
 			goodslist.map(function(item,idx){
 
+					console.log(currentId)
 				//找出点击删除的商品；
-				if(item.guid === currentId){
+				if(item.id === currentId){
 
 					//删除商品；
 					goodslist.splice(idx,1);
-					console.log(currentId);
+					console.log(currentId,goodslist);
 
 					//显示购物车商品数量；
 					$(".goodsnum").html(goodslist.length);
@@ -253,7 +266,7 @@ require(['config'],function(){
 		var pageNo = 1;
 		// var lastPage = 1;
 		$.ajax({
-			url:"../api/goodslist.php",
+			url:"../api/goods.php",
 			dataType:"json",
 			data:{pageNo:pageNo,qty:8},
 			success:function(res){
@@ -338,7 +351,7 @@ require(['config'],function(){
 
 			//点击发送ajax请求
 			$.ajax({
-				url:"../api/goodslist.php",
+				url:"../api/goods.php",
 				dataType:"json",
 				data:{pageNo:pageNo,qty:8},
 				success:function(res){
@@ -414,7 +427,7 @@ require(['config'],function(){
 			var _owid = $(".content_left").outerHeight();
 
 			var _result = _top - scrollTop;
-			console.log(_result,_owid)
+	
 
 			if(scrollTop >= height ){
 				$(".content_left").addClass("content_fixed");

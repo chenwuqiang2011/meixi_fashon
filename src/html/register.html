@@ -4,9 +4,10 @@
 	<meta charset="UTF-8">
 	<title>register</title>
 	<link rel="stylesheet" href="../css/register.css">
-	<link rel="stylesheet" href="../css/footer.css">
+	<link rel="stylesheet" href="../css/public.css">
 	<script src="../js/require.js" data-main="../js/register"></script>
-
+	<script src="../lib/jquery3.1.1.js"></script>
+	<script src="../js/public.js"></script>
 </head>
 <body>
 	<div class="headerbg">
@@ -42,7 +43,7 @@
 								<input name="msg_value" class="msg_value" type="text" maxlength="6" placeholder="短信验证码">
 							</div>
 						</div>
-						<div class="msg_send fr"><a href="#">发送验证码</a></div>
+						<div class="msg_send fr"></div>
 					</div>
 					<div class="username clearfix">
 						<div class="lock fl"></div>
@@ -61,13 +62,12 @@
 					<div class="login_btn">
                 		<button type="button">注册</button>
                		</div>
-               		<p class="sign_up">已注册？<a href="#">登录</a></p>
+               		<p class="sign_up">已注册？<a href="./login.html">登录</a></p>
 				</div>
 			</form>
 		</div>
 	</div>
 
-	<#include file="./footer.html"/>
-<!-- <object style="border:0px" type="text/x-scriptlet" data="footer.html" width=100% height=30></object>  -->
+	<div id="footer"></div>
 </body>
 </html>

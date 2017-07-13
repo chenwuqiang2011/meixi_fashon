@@ -189,10 +189,9 @@ li {
 
 .login .msg_send {
   margin-top: 10px;
-}
-
-.login .msg_send a {
+  margin-right: 30px;
   color: #669aca;
+  font-size: 14px;
 }
 
 .login .auto_login label {

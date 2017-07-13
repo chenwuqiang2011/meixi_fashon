@@ -26,7 +26,7 @@
 
 	// 接收前端传回的数据
 	$telphone = isset($_GET['telphone']) ? $_GET['telphone'] : '';
-	$password = isset($_GET['password']) ? $_GET['password'] : '123456';
+	$password = isset($_GET['password']) ? $_GET['password'] : '';
 
 	// md5加密密码
 	$password = md5($password);
@@ -36,19 +36,33 @@
 		
 
 		// 查找所有用户信息
-		$telphones = "select telphone from user where telphone='$telphone'";
+		$telphones = "select telphone,password from user where telphone='$telphone'";
 
 		// 查询数据库
 
 		$result = $conn->query($telphones);
 
+
 		//使用查询结果	
 		$row = $result->fetch_all(MYSQLI_ASSOC);
 
+
 		if($row){
-			echo "false";
+
+			$data = $row[0];
+
+			//找出密码；
+
+			$_password = $data["password"];
+
+			if($password == $_password){
+				echo "true";
+			}
 		}else{
-			echo "true";
+			echo "false";
 		}
+
+		
+
 	}
 ?>
