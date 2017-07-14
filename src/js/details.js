@@ -4,6 +4,112 @@
 require(['config'],function(){
 	require(['jquery','common','gdszoom'],function($,com){
 
+		//判断用户是否登录；
+		var name = com.getCookie('name');
+
+		// 如果没有cookie，则赋值空数组
+		// 有cookie就转换成对象
+		if(name.length>0){
+			name = JSON.parse(name);
+		};
+
+		if(name){
+			$("#username").html(`您好！${name}`).show();
+			$("#logout").show();
+			$("#signin").hide();
+			$("#signup").hide();
+		}else{
+			$("#username").html(`您好！${name}`).hide();
+			$("#logout").hide();
+			$("#signin").show();
+			$("#signup").show();
+		};
+
+		//点击退出，删除cookie;
+		$("#logout").click(function(){
+
+			$("#username").html(`您好！${name}`).hide();
+			$("#logout").hide();
+			$("#signin").show();
+			$("#signup").show();
+
+			//同时删除cookie
+			com.deleteCookie("name");
+			
+		}).mouseover(function(){
+			$(this).css({"cursor":"pointer"});
+		});
+
+		//点出登录
+		$("#signin").click(function(){
+			location.href="./login.html";
+		});
+
+		//点出注册；
+		$("#signup").click(function(){
+			location.href="./register.html";
+		});
+
+
+		//购物袋鼠标移入移出；
+		var timer;
+		$(".car").mouseenter(function(){
+			clearTimeout(timer);
+			$(".total_car").show();
+		});
+		$(".car").mouseleave(function(){
+			timer = setTimeout(function(){
+				$(".total_car").hide();
+			},300);
+		});
+
+		//商品详情点击切换；
+		$(".details_tab").on("click","li",function(){
+			$(this).addClass("tab_active").siblings("li").removeClass("tab_active");
+		})
+
+		//导航移入移出；
+	
+		$(".nav_list li").mouseenter(function(){	
+			$(".subnav_list").eq($(this).index()).show().siblings().hide();
+			// $(".header_nav_n .header_nav_sel").eq(thisIndex).show().siblings().hide()
+		});
+
+		$(".nav_list").mouseleave(function(){
+			$(".subnav_list").hide();
+		});
+
+		//点击返回顶部按钮事件
+		$(".to_top").click(function(){
+			$("body").animate({scrollTop:0},500);
+		});
+
+		//侧边栏移入显示二维码
+		var timer_app;
+		$(".phone_ewm").mouseover(function(){
+			clearTimeout(timer_app);
+			$(".consult_app").show();
+		});
+		$(".phone_ewm").mouseleave(function(){
+			timer_app = setTimeout(function(){
+				$(".consult_app").hide();
+			},500)
+		});
+
+		//购物车点击结算跳转到购物车页面；
+		$(".account").click(e=>{
+			location.href = "./car.html";
+			e.preventDefault();
+		});
+
+		//导航列表点击跳转列表页；
+		$(".subnav").on("click","li",function(e){
+			location.href="./goodslist.html";
+
+			//阻止浏览器默认行为；
+			e.preventDefault();
+		});
+
 		// 获取商品数据，并写入页面
 		var id = location.search.substring(1);
 		console.log(id);
@@ -287,59 +393,6 @@ require(['config'],function(){
 				});
 			}
 		});
-
-		//购物袋鼠标移入移出；
-		var timer;
-		$(".car").mouseenter(function(){
-			clearTimeout(timer);
-			$(".total_car").show();
-		});
-		$(".car").mouseleave(function(){
-			timer = setTimeout(function(){
-				$(".total_car").hide();
-			},300);
-		});
-
-		//商品详情点击切换；
-		$(".details_tab").on("click","li",function(){
-			$(this).addClass("tab_active").siblings("li").removeClass("tab_active");
-		})
-
-		//导航移入移出；
-	
-		$(".nav_list li").mouseenter(function(){	
-			$(".subnav_list").eq($(this).index()).show().siblings().hide();
-			// $(".header_nav_n .header_nav_sel").eq(thisIndex).show().siblings().hide()
-		});
-
-		$(".nav_list").mouseleave(function(){
-			$(".subnav_list").hide();
-		});
-
-		//点击返回顶部按钮事件
-		$(".to_top").click(function(){
-			$("body").animate({scrollTop:0},500);
-		});
-
-		//侧边栏移入显示二维码
-		var timer_app;
-		$(".phone_ewm").mouseover(function(){
-			clearTimeout(timer_app);
-			$(".consult_app").show();
-		});
-		$(".phone_ewm").mouseleave(function(){
-			timer_app = setTimeout(function(){
-				$(".consult_app").hide();
-			},500)
-		});
-
-		//购物车点击结算跳转到购物车页面；
-		$(".account").click(e=>{
-			location.href = "./car.html";
-			e.preventDefault();
-		});
-
-	
 
 	});
 });

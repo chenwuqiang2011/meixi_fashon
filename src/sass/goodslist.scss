@@ -1,5 +1,7 @@
 
 /* 内容样式 */
+$wid:1200px;
+$mgauto:0 auto;
 .containerbg{
 	width:100%;
 	min-width:$wid;
@@ -190,7 +192,7 @@
 						.global{
 						    width: 48px;
 						    height: 24px;
-						    margin-right: 10px;
+						    margin:10px 10px 0 0;
 						    text-align: left;
 							padding: 0 20px 15px 20px;
 							.g_buy{
@@ -231,14 +233,15 @@
 				    		color:#666;
 						}
 						.goodsCar{
-							
-							padding: 0 20px;
+							margin:5px 0;
+							padding:0 20px;
 							.bigCar{
+								padding:5px 0;
 								cursor: pointer;
 								height:18px;
 								line-height:18px;
 								width:50%;
-								border-radius: 10px;
+								border-radius: 5px;
 								color:#fff;
 								font-size:12px;
 								text-align:center;

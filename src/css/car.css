@@ -1,41 +1,4 @@
 @charset "UTF-8";
-html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, menu, input, button, textarea, p, blockquote, th, td {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font: 12px "微软雅黑",Helvetica,sans-serif;
-  line-height: 1.5;
-  background-color: #fff;
-  color: #555;
-}
-
-a {
-  color: #666;
-  text-decoration: none;
-}
-
-li {
-  list-style: none;
-}
-
-.fl {
-  float: left;
-}
-
-.fr {
-  float: right;
-}
-
-.clearfix:after {
-  display: block;
-  clear: both;
-  content: ".";
-  visibility: hidden;
-  height: 0;
-}
-
 /* 内容样式 */
 .containerbg {
   width: 100%;

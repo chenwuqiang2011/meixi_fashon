@@ -56,8 +56,6 @@
 		//使用查询结果	
 		$row = $result->fetch_all(MYSQLI_ASSOC);
 
-		// print_r ($row);
-
 		// 根据分布截取数据；
 		$data = array(
 			'data'=>array_slice($row, ($page_no-1)*$qty,$qty),

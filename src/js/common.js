@@ -49,7 +49,7 @@ define(function(){
 			// 利用设置有效期来达到删除cookie的效果
 			var now = new Date();
 			now.setDate(now.getDate()-1);
-			document.cookie = name + '=0;expires=' + now.toUTCString();
+			document.cookie = name + '=0;expires=' + now.toUTCString() + ";path=/";
 		}
 	};
 });

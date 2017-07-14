@@ -14,22 +14,6 @@ require(['config'],function(){
 				return false;
 			};
 
-			//判断用户是否存在；
-			$.ajax({
-				url:'../api/create_user.php',
-				data:{
-					telphone:$('.telphone_num').val()
-				},
-				success:(res)=>{
-					console.log(res)
-					if(res === "false"){
-						$(".tips").html("用户已存在，请换一个用户名！")
-						return false;
-					}else {
-						$(".tips").html("");
-					}
-				}
-			});
 		});
 
 		//短信验证码
@@ -72,33 +56,52 @@ require(['config'],function(){
 		//点击按钮注册，把手机号和密码写入数据库，且跳转页面
 		$(".login_btn button").click(()=>{
 
-			//当所有验证符合条件时，写入数据库，并跳转页面；
-			if($(".tips").html() == ""){console.log("可以注册")
-
-				$.ajax({
-					url:'../api/create_user.php',
-					data:{
-						telphone:$('.telphone_num').val(),
-						password:$('.password').val()
-					},
-					success:(res)=>{
-						console.log('php数据',res)
-						var _phone = $(".telphone_num").val();
-						var pwd = $(".password").val();
-
-						//七天；
-						var now = new Date();
-						now.setDate(now.getDate()+1);
-						//把登录用户名传到cookie;
-
-						com.setCookie("name",_phone,now,"/");
-
-						//跳转页面；
-						// location.href = "./register_success.html?name=" +  _phone;
-
+			//判断用户是否存在；
+			var flag = true;
+			$.ajax({
+				url:'../api/create_user.php',
+				data:{
+					telphone:$('.telphone_num').val()
+				},
+				success:(res)=>{
+					
+					if(res === "false"){
+						$(".tips").html("用户已存在，请换一个用户名！");
+						flag = false;
+						return false;
 					}
-				});
-			}
+
+					//用户可用时，写入数据库
+					
+					if(flag){
+
+						$.ajax({
+							url:'../api/create_user.php',
+							data:{
+								telphone:$('.telphone_num').val(),
+								password:$('.password').val()
+							},
+							success:(res)=>{
+								console.log('php数据',res)
+								var _phone = $(".telphone_num").val();
+								var pwd = $(".password").val();
+
+								//七天；
+								var now = new Date();
+								now.setDate(now.getDate()+1);
+								//把登录用户名传到cookie;
+
+								com.setCookie("name",_phone,now,"/");
+
+								//跳转页面；
+								location.href = "./register_success.html?name=" +  _phone;
+
+							}
+						});
+					}
+				}
+			});
+
 		});
 
 		

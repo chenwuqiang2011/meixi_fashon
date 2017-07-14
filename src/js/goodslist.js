@@ -4,6 +4,43 @@
 require(['config'],function(){
 	require(['jquery','common'],function($,com){
 
+		//判断用户是否登录；
+		var name = com.getCookie('name');
+
+		// 如果没有cookie，则赋值空数组
+		// 有cookie就转换成对象
+		if(name.length>0){
+			name = JSON.parse(name);
+		};
+
+		if(name){
+			$("#username").html(`您好！${name}`).show();
+			$("#logout").show();
+			$("#signin").hide();
+			$("#signup").hide();
+		}else{
+			$("#username").html(`您好！${name}`).hide();
+			$("#logout").hide();
+			$("#signin").show();
+			$("#signup").show();
+		};
+
+		//点击退出，删除cookie;
+		$("#logout").click(function(){
+
+			$("#username").html(`您好！${name}`).hide();
+			$("#logout").hide();
+			$("#signin").show();
+			$("#signup").show();
+
+			//同时删除cookie
+			com.deleteCookie("name");
+			
+		}).mouseover(function(){
+			$(this).css({"cursor":"pointer"});
+		})
+
+
 		//发送ajax请求生成导航列表；
 
 		$.ajax({
@@ -227,6 +264,17 @@ require(['config'],function(){
 			});
 		});
 
+		//点出登录
+		$("#signin").click(function(){
+			location.href="./login.html";
+		});
+
+		//点出注册；
+		$("#signup").click(function(){
+			location.href="./register.html";
+		});
+
+
 		//导航移入移出；
 	
 		$(".nav_list li").mouseenter(function(){	
@@ -271,7 +319,6 @@ require(['config'],function(){
 			data:{pageNo:pageNo,qty:8},
 			success:function(res){
 				console.log(res);
-
 				//生成分页
 
 				var pageLen = Math.ceil(res.total/res.qty);
@@ -291,14 +338,15 @@ require(['config'],function(){
 			
 				var $ul = $('<ul/>').addClass("clearfix");
 				res.data.map(function(item,idx){
+					console.log(item);
 					try{
 						$("<li/>").addClass("goods").html(`
 							<div class="details" id=${item.id}>
 								<div class="pic">
 									<a href="#"><img src="${item.imgurl}" alt="" /></a>
-								</div>
 								<div class="global">
-									<div class="${item.true}"></div>
+									<div class="${item.global}"></div>
+								</div>
 								</div>
 								<div class="goodsname">
 									<a href="#">
@@ -318,23 +366,9 @@ require(['config'],function(){
 						console.log(666)
 					}			
 				});
+
 				$ul.appendTo($(".goodslist"));
 				pageNo++;
-
-				//商品列表点击显示隐藏；
-				// $(".list").on("click",".listItem",function(){
-				// 	//当前li显示隐藏；
-				// 	$(this).next(".listItem_b").toggle();
-
-				// 	//+,-号切换
-				// 	if($(this).next(".listItem_b").css("display") == "none"){
-				// 		$(this).find(".lt_state").html("+");
-
-				// 	}else if($(this).next(".listItem_b").css("display") == "block"){
-				// 		$(this).find(".lt_state").html("-")
-				// 	}
-
-				// });
 			}
 		});
 
@@ -355,7 +389,7 @@ require(['config'],function(){
 				dataType:"json",
 				data:{pageNo:pageNo,qty:8},
 				success:function(res){
-					// console.log(res);
+					console.log(res);
 					//清空ul的内容；
 					$(".goodslist ul").html("");
 					res.data.map(function(item){
@@ -366,7 +400,7 @@ require(['config'],function(){
 									<a href="#"><img src="${item.imgurl}" alt="" /></a>
 								</div>
 								<div class="global">
-									<div class="${item.true}"></div>
+									<div class="${item.global}"></div>
 								</div>
 								<div class="goodsname">
 									<a href="#">

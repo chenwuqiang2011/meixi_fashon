@@ -79,7 +79,7 @@ require(['config'],function(){
 
 		//生成喜欢的商品数据；
 		$.ajax({
-			url:"../api/goodslist.php",
+			url:"../api/goods.php",
 			dataType:"json",
 			data:{qty:16},
 			success:function(res){
